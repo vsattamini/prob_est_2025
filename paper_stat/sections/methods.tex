@@ -1,0 +1,20 @@
+% Methods
+
+\noindent
+% Describe the dataset (source, size, language) and how it was preprocessed.
+% Outline the feature extraction procedure, referencing the metrics implemented
+% in \texttt{src/features.py}: sentence statistics, lexical diversity, character
+% entropy, function word ratio, pronoun ratio, bigram repetition and
+% readability.  Specify which tools/libraries were used.
+
+% Explain the statistical tests: Mann--Whitney U test for independent samples
+% to compare feature distributions between human and LLM texts; Cliff's
+% \(\delta\) as a measure of effect size; false discovery rate (FDR) control
+% using the Benjamini--Hochberg procedure.
+
+% Describe the multivariate models: PCA for dimensionality reduction and
+% visualisation; linear discriminant analysis (LDA) and logistic regression
+% for classification.  Note the cross--validation strategy (leave--one--topic--out
+% if a topic column is present, otherwise stratified K--fold) and the metrics
+% computed (ROC, AUC, precision--recall).  Clarify any hyperparameter
+% choices.

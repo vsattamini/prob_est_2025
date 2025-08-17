@@ -1,0 +1,60 @@
+% Fuzzy Set Theory Background and Methods
+
+\noindent
+% Briefly recall the basic definitions of fuzzy sets and fuzzy logic.
+% A fuzzy set \(A\) on a universe of discourse \(U\) is a pair \((U,\mu_A)\)
+% where the membership function \(\mu_A:U\to[0,1]\) assigns to each element
+% a degree of membership \citep{WikipediaFuzzySet}.  Unlike crisp sets,
+% membership grades allow gradual transitions between full inclusion (1) and
+% exclusion (0).  Fuzzy logic, introduced by \citet{Zadeh1965}, extends
+% classical Boolean logic to handle partial truth values and supports
+% approximate reasoning.
+
+% \subsection*{Feature extraction}
+% We reuse the same features extracted for the statistical analysis
+% (Section~\ref{sec:methods} of the statistics paper).  These include
+% measures of sentence length, lexical diversity, character entropy,
+% function word proportion, first person pronoun ratio, bigram repetition
+% and readability.  Each feature provides evidence for the degree to which
+% a text is more likely to be human or machine–generated.
+
+% \subsection*{Membership functions}
+% For each feature \(x\) we construct three triangular membership
+% functions representing the linguistic concepts ``low'', ``medium'' and
+% ``high''.  The vertices of these triangles are determined from the
+% 33rd percentile \(q_{0.33}\), median \(q_{0.50}\) and 66th percentile
+% \(q_{0.66}\) of the feature distribution across all samples (training
+% data).  Let \(x_{\min}\) and \(x_{\max}\) denote the minimum and
+% maximum observed values.  Then the ``low'' membership function has
+% vertices \((x_{\min}, x_{\min}, q_{0.33})\), the ``medium'' function
+% \((q_{0.33}, q_{0.50}, q_{0.66})\) and the ``high'' function
+% \((q_{0.33}, q_{0.66}, x_{\max})\).  The membership degree of a value
+% \(x\) is computed using the standard triangular function.
+
+% \subsection*{Orientation and rules}
+% To determine whether a feature indicates humanness or machine–
+% generatedness, we examine group medians: if the median of the human
+% class exceeds that of the LLM class, the feature is considered
+% ``direct'' and high values support the human hypothesis; otherwise
+% orientation is ``inverse'' and low values support the human hypothesis.
+% Each feature thus casts a vote for the human or LLM class based on its
+% membership degree.  Medium membership contributes equally to both classes.
+
+% \subsection*{Inference and defuzzification}
+% For a given sample, membership degrees for all features are computed and
+% aggregated by averaging to obtain overall scores for the human and LLM
+% hypotheses.  The probabilities are normalised to sum to 1 and the
+% predicted class is the one with the higher degree.  This simple
+% aggregation corresponds to a Takagi–Sugeno zero‑order model with
+% uniformly weighted rules \citep{Zimmermann2001}.  More sophisticated
+% aggregation operators (e.g. weighted averages, fuzzy integrals) could
+% be explored in future work.
+
+% \subsection*{Evaluation}
+% The fuzzy classifier is evaluated using the same cross–validation
+% scheme as the statistical models (leave–one–topic–out or
+% stratified K–fold).  Performance is measured by accuracy, ROC curves
+% and precision–recall curves, allowing a direct comparison with the
+% classical classifiers.  The transparency of the fuzzy system makes it
+% straightforward to analyse which features contribute most to the
+% decision.
