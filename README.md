@@ -1,6 +1,6 @@
 # Joint Analysis of Stylometric Features using Statistical and Fuzzy Methods
 
-This repository contains the scaffolding for two complementary master‐level research projects
+This repository contains the scaffolding for two complementary masters‐level research projects
 that analyse textual data from humans and large language models (LLMs).  Both papers are
 designed to be completed in a single week.  The first paper applies classical probability and
 statistical methods (descriptive statistics, non‑parametric tests, PCA, LDA and logistic
