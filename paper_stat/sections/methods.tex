@@ -2,37 +2,45 @@
 
 \subsection{Conjunto de Dados}
 
-Utilizou-se um corpus balanceado de textos em português do Brasil contendo 100.000 amostras (50.000 de autores, 50.000 de LLMs), extraídas por amostragem estratificada de um conjunto maior com 1.295.958 documentos. As fontes de texto autoral incluem: (i) BrWaC (Brazilian Web as Corpus)~\cite{brwac}, um grande corpus web; (ii) BoolQ~\cite{boolq}, perguntas e passagens de contexto; e (iii) conjuntos de validação associados. As fontes de texto gerado por LLM incluem: (i) ShareGPT-Portuguese~\cite{sharegpt_portuguese}, conversas em português extraídas da plataforma ShareGPT; (ii) resenhas do IMDB traduzidas para português por modelos de linguagem; e (iii) o dataset Canarim~\cite{canarim}, contendo triplas contexto--pergunta--resposta geradas por LLMs.
+Utilizou-se um corpus balanceado de textos em português do Brasil contendo 100.000 amostras (50.000 autorais, 50.000 de LLMs), extraídas por amostragem estratificada de um conjunto maior com 2.331.317 documentos originais provenientes de 5 fontes distintas. As fontes de texto autoral incluem: (i) BrWaC (Brazilian Web as Corpus)~\cite{brwac}, um grande corpus web de textos brasileiros; e (ii) BoolQ~\cite{boolq}, contendo passagens de contexto para perguntas booleanas. As fontes de texto gerado por LLM incluem: (i) ShareGPT-Portuguese~\cite{sharegpt_portuguese}, conversas em português extraídas da plataforma ShareGPT; (ii) resenhas do IMDB traduzidas para português por modelos de tradução automática (classificadas como texto LLM); e (iii) o dataset Canarim~\cite{canarim}, contendo saídas geradas por LLMs.
 
-Os textos foram previamente filtrados por comprimento (intervalo de 100 a 200 caracteres, máximo 10.000 caracteres) e segmentados quando necessário para uniformizar o tamanho das amostras. O balanceamento foi obtido por subamostragem (downsampling) da classe majoritária e sobreamostragem (upsampling) da classe minoritária, resultando em proporções exatamente iguais (50\%/50\%). A amostra de 100.000 documentos foi selecionada aleatoriamente com semente fixa (\texttt{seed=42}) para reprodutibilidade.
+Os textos foram previamente filtrados por comprimento mínimo de 100 caracteres e máximo de 10.000 caracteres, sendo textos muito longos segmentados em chunks de até 10.000 caracteres sem sobreposição. A segmentação priorizou quebras naturais de texto (pontos finais, parágrafos e espaços). O balanceamento foi obtido por subamostragem (downsampling) da classe majoritária e sobreamostragem (upsampling) da classe minoritária, resultando em proporções exatamente iguais (50\%/50\%). A amostra de 100.000 documentos foi selecionada aleatoriamente com semente fixa (\texttt{seed=42}) para reprodutibilidade.
 
 Para prevenir vazamento de dados (data leakage), verificamos que os textos não apresentam agrupamentos estruturais por autor, tópico ou sessão de geração. A validação cruzada estratificada mantém o balanço de classes entre os folds, garantindo amostras independentes em conjuntos de treino e teste. Esta abordagem evita viés de avaliação documentado em estudos anteriores~\cite{kohavi1995}.
 
 \subsection{Extração de Características Estilométricas}
 
-Cada amostra de texto foi processada pelo módulo \texttt{src/features.py}, que calcula 10 métricas estilométricas em português. As características são:
+Cada amostra de texto foi processada pelo módulo \texttt{src/features.py}, que calcula 10 métricas estilométricas contínuas em português:
 
 \begin{enumerate}
-    \item \textbf{Estatísticas de frase:} comprimento médio, desvio padrão e coeficiente de variação (burstiness = $\sigma/\mu$), que quantifica a variabilidade relativa do comprimento das frases.
+    \item \textbf{Comprimento médio de frase} (\texttt{sent\_mean}): média do número de palavras por frase, calculada após segmentação em pontos finais, exclamações e interrogações.
 
-    \item \textbf{Diversidade lexical:} relação tipo-token (TTR), que mede a razão entre palavras únicas e o total de palavras; C de Herdan ($\log V / \log N$, onde $V$ é o número de tipos e $N$ o número de tokens)~\cite{herdan1960}; e proporção de hapax legomena, ou seja, a fração de palavras que ocorrem exatamente uma vez.
+    \item \textbf{Desvio padrão do comprimento de frase} (\texttt{sent\_std}): desvio padrão populacional (ddof=0) do número de palavras por frase.
 
-    \item \textbf{Entropia de caracteres:} entropia de Shannon calculada sobre a distribuição de caracteres (\texttt{char\_entropy}), medindo a diversidade no nível de caractere.
+    \item \textbf{Burstiness} (\texttt{sent\_burst}): coeficiente de variação do comprimento de frase, calculado como $\text{burstiness} = \sigma / \mu$, onde $\sigma$ é o desvio padrão e $\mu$ a média do comprimento de frases.
 
-    \item \textbf{Proporção de palavras funcionais:} fração de tokens que pertencem a uma lista de palavras funcionais do português (\texttt{func\_word\_ratio}), incluindo artigos, preposições, conjunções e pronomes comuns.
+    \item \textbf{Relação tipo-token} (\texttt{ttr}): razão entre palavras únicas (tipos) e total de palavras (tokens), calculada como $\text{TTR} = V/N$, onde $V$ é o número de tipos e $N$ o número de tokens.
 
-    \item \textbf{Proporção de pronomes de primeira pessoa:} fração de tokens que são pronomes de primeira pessoa em português (\texttt{first\_person\_ratio}), como ``eu'', ``me'', ``mim'', ``nós'', ``nosso'', etc.
+    \item \textbf{C de Herdan} (\texttt{herdan\_c}): medida de diversidade lexical normalizada para o comprimento do texto, calculada como $C = \log(V) / \log(N)$~\cite{herdan1960}.
 
-    \item \textbf{Repetição de bigramas:} proporção de bigramas consecutivos que aparecem mais de uma vez no texto (\texttt{bigram\_repeat\_ratio}).
+    \item \textbf{Proporção de hapax legomena} (\texttt{hapax\_prop}): fração de palavras que ocorrem exatamente uma vez no texto, relativa ao total de tokens.
+
+    \item \textbf{Entropia de caracteres} (\texttt{char\_entropy}): entropia de Shannon sobre a distribuição de caracteres, calculada como $H = -\sum p(c) \log_2 p(c)$, onde $p(c)$ é a probabilidade de cada caractere.
+
+    \item \textbf{Proporção de palavras funcionais} (\texttt{func\_word\_ratio}): fração de tokens pertencentes a uma lista curada de 86 palavras funcionais do português (artigos, preposições, conjunções e pronomes).
+
+    \item \textbf{Proporção de pronomes de primeira pessoa} (\texttt{first\_person\_ratio}): fração de tokens que são pronomes de primeira pessoa (eu, me, mim, meu, minha, nós, nos, nosso, nossa).
+
+    \item \textbf{Proporção de bigramas repetidos} (\texttt{bigram\_repeat\_ratio}): fração de bigramas únicos que aparecem mais de uma vez no texto.
 \end{enumerate}
 
-Todas as métricas foram calculadas após tokenização simples baseada em expressões regulares. A métrica de legibilidade Flesch--Kincaid (\texttt{fk\_grade}) foi excluída da análise por ser específica para inglês, retornando valores zero para textos em português.
+Todas as métricas foram calculadas após tokenização baseada em expressões regulares (padrão \texttt{\textbackslash b\textbackslash w+\textbackslash b}). As features são variáveis contínuas em escala de razão, exceto a entropia de caracteres que é em escala de intervalo.
 
 \subsection{Testes Estatísticos Não Paramétricos}
 
-Para cada característica, comparamos as distribuições entre textos humanos e de LLM usando o teste U de Mann--Whitney~\cite{mann1947}, um teste não paramétrico para duas amostras independentes. Este teste foi escolhido por não assumir normalidade das distribuições e por ser robusto a outliers, características frequentes em dados linguísticos. Calculamos valores-$p$ bicaudais para cada teste.
+Para cada característica, comparamos as distribuições entre textos autorais e de LLM usando o teste U de Mann--Whitney~\cite{mann1947}, um teste não paramétrico para duas amostras independentes. Este teste foi escolhido por não assumir normalidade das distribuições e por ser robusto a outliers, características frequentes em dados linguísticos. Calculamos valores-$p$ bicaudais para cada teste.
 
-O tamanho de efeito foi quantificado pelo delta de Cliff ($\delta$)~\cite{cliff1993, cliff1996}, uma medida não paramétrica que estima a probabilidade de que um valor aleatório do grupo A seja maior que um valor aleatório do grupo B, menos a probabilidade reversa. O delta de Cliff varia entre $-1$ e $+1$, onde valores próximos de zero indicam sobreposição completa entre as distribuições. Seguindo Romano et al.~\cite{romano2006}, interpretamos $|\delta| < 0.147$ como efeito negligenciável, $|\delta| < 0.330$ como pequeno, $|\delta| < 0.474$ como médio e $|\delta| \geq 0.474$ como grande.
+O tamanho de efeito foi quantificado pelo delta de Cliff ($\delta$)~\cite{cliff1993, cliff1996}, calculado como $\delta = (D^+ - D^-) / (n_1 \times n_2)$, onde $D^+$ é o número de pares em que valores do grupo autoral excedem valores do grupo LLM, $D^-$ é o número de pares na relação inversa, e $n_1$, $n_2$ são os tamanhos amostrais. O delta de Cliff varia entre $-1$ e $+1$, onde valores próximos de zero indicam sobreposição completa entre as distribuições. Seguindo Romano et al.~\cite{romano2006}, interpretamos $|\delta| < 0.147$ como efeito negligenciável, $0.147 \leq |\delta| < 0.330$ como pequeno, $0.330 \leq |\delta| < 0.474$ como médio e $|\delta| \geq 0.474$ como grande.
 
 Dado que realizamos testes múltiplos (10 características), aplicamos a correção de Benjamini--Hochberg~\cite{benjamini1995} para controlar a taxa de falsas descobertas (FDR). Esta correção fornece valores-$q$ ajustados, mantendo o controle sobre a proporção esperada de falsas rejeições entre todas as rejeições.
 
@@ -42,24 +50,22 @@ Para visualizar a estrutura multivariada dos dados, aplicamos análise de compon
 
 \subsection{Modelos de Classificação}
 
-Avaliamos dois modelos lineares para classificação binária:
+Avaliamos três modelos para classificação binária:
 
 \begin{enumerate}
-    \item \textbf{Análise Discriminante Linear (LDA):} um classificador generativo que assume distribuições Gaussianas para cada classe e busca a combinação linear de características que melhor separa as classes~\cite{fisher1936, mclachlan2004}.
+    \item \textbf{Análise Discriminante Linear (LDA):} um classificador generativo que assume distribuições Gaussianas multivariadas para cada classe com matrizes de covariância iguais, buscando a direção de projeção $w = S_W^{-1}(\mu_1 - \mu_2)$ que maximiza a separação entre classes~\cite{fisher1936, mclachlan2004}.
 
-    \item \textbf{Regressão Logística:} um modelo discriminativo que estima diretamente a probabilidade posterior de cada classe através de uma função logística~\cite{hosmer2013}.
+    \item \textbf{Regressão Logística:} um modelo discriminativo que estima diretamente a probabilidade posterior através da função logística $P(Y=1|X) = 1 / (1 + \exp(-(\beta_0 + \sum \beta_i x_i)))$, sem assumir normalidade das features~\cite{hosmer2013}.
+
+    \item \textbf{Classificador Fuzzy:} um sistema baseado em regras com funções de pertinência triangulares data-driven (definidas por quantis 33\%, 50\%, 66\%), agregação por média aritmética e inferência tipo Takagi-Sugeno ordem-zero. Detalhes completos em trabalho complementar sobre classificação fuzzy.
 \end{enumerate}
 
-Ambos os modelos foram treinados sobre as 10 características padronizadas. Para a regressão logística, utilizamos \texttt{max\_iter=1000} para garantir convergência.
+Os modelos LDA e Regressão Logística foram treinados sobre as 10 características padronizadas (média zero, desvio padrão unitário). Para a regressão logística, utilizamos \texttt{max\_iter=1000} e sem regularização. O classificador fuzzy opera diretamente sobre as features não-padronizadas.
 
 \subsection{Validação Cruzada e Métricas de Desempenho}
 
-Empregamos validação cruzada estratificada com 5 folds (\texttt{StratifiedKFold})~\cite{kohavi1995} para avaliar o desempenho dos classificadores. A estratificação garante que cada fold mantenha a proporção de classes balanceada. Como não foi possível implementar validação por tópico (ausência de coluna de tópico nos dados), a validação estratificada padrão foi adotada.
+Empregamos validação cruzada estratificada com 5 folds (\texttt{StratifiedKFold}, \texttt{random\_state=42})~\cite{kohavi1995} para avaliar o desempenho dos classificadores. A estratificação garante que cada fold mantenha a proporção 50/50 de classes. Cada fold utiliza 80\% dos dados para treino (4 folds) e 20\% para teste (1 fold).
 
-Para cada fold, calculamos:
-\begin{itemize}
-    \item \textbf{Curva ROC e AUC:} área sob a curva ROC (Receiver Operating Characteristic), que resume a capacidade do modelo de discriminar entre as classes em todos os limiares de decisão~\cite{fawcett2006}.
-    \item \textbf{Curva Precision--Recall e Average Precision (AP):} a área sob a curva precision-recall, particularmente informativa para conjuntos balanceados~\cite{davis2006}.
-\end{itemize}
+A métrica primária de avaliação é a \textbf{área sob a curva ROC (AUC)}~\cite{fawcett2006}, que resume a capacidade do modelo de discriminar entre as classes em todos os limiares de decisão. A curva ROC plota a taxa de verdadeiros positivos (TPR) versus a taxa de falsos positivos (FPR) para diferentes thresholds. O AUC possui interpretação probabilística: a probabilidade de que um texto LLM aleatório receba score maior que um texto autoral aleatório.
 
-Reportamos a média e o desvio padrão de AUC e AP ao longo dos 5 folds. Todas as análises foram implementadas em Python 3 utilizando as bibliotecas pandas~\cite{pandas}, NumPy~\cite{numpy}, scikit-learn~\cite{scikit-learn} e matplotlib~\cite{matplotlib} para visualização.
+Reportamos a média e o desvio padrão de AUC ao longo dos 5 folds. Todas as análises foram implementadas em Python 3 utilizando as bibliotecas pandas~\cite{pandas}, NumPy~\cite{numpy}, scikit-learn~\cite{scikit-learn} e SciPy~\cite{scipy} para testes estatísticos.

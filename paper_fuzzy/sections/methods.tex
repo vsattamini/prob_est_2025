@@ -12,9 +12,15 @@ Um conjunto fuzzy $A$ em um universo de discurso $U$ caracteriza-se por uma fun�
 
 A lógica fuzzy, proposta por Zadeh~\cite{zadeh1965}, estende a lógica Booleana clássica para manipular valores de verdade parciais e suportar raciocínio aproximado. Operações fundamentais incluem união (máximo), interseção (mínimo) e complemento ($1 - \mu_A(x)$).
 
-\subsection{Conjunto de Dados e Características}
+\subsection{Conjunto de Dados}
 
-Utilizamos as mesmas 10 características estilométricas: \texttt{sent\_mean}, \texttt{sent\_std}, \texttt{sent\_burst}, \texttt{ttr}, \texttt{herdan\_c}, \texttt{hapax\_prop}, \texttt{char\_entropy}, \texttt{func\_word\_ratio}, \texttt{first\_person\_ratio} e \texttt{bigram\_repeat\_ratio}.
+Utilizou-se um corpus balanceado de textos em português do Brasil contendo 100.000 amostras (50.000 autorais, 50.000 de LLMs), extraídas por amostragem estratificada de um conjunto maior com 2.331.317 documentos originais provenientes de 5 fontes distintas. As fontes de texto autoral incluem: (i) BrWaC (Brazilian Web as Corpus), um grande corpus web de textos brasileiros; e (ii) BoolQ, contendo passagens de contexto para perguntas booleanas. As fontes de texto gerado por LLM incluem: (i) ShareGPT-Portuguese, conversas em português; (ii) resenhas do IMDB traduzidas para português por modelos de tradução automática; e (iii) o dataset Canarim, contendo saídas geradas por LLMs.
+
+Os textos foram filtrados por comprimento mínimo de 100 caracteres e máximo de 10.000 caracteres, sendo textos muito longos segmentados em chunks de até 10.000 caracteres sem sobreposição. O balanceamento foi obtido por subamostragem da classe majoritária e sobreamostragem da classe minoritária, resultando em proporções exatamente iguais (50\%/50\%).
+
+\subsection{Características Estilométricas}
+
+Utilizamos 10 características estilométricas extraídas pelo módulo \texttt{src/features.py}: (1) \texttt{sent\_mean} -- comprimento médio de frase em palavras; (2) \texttt{sent\_std} -- desvio padrão do comprimento de frase; (3) \texttt{sent\_burst} -- burstiness ($\sigma/\mu$); (4) \texttt{ttr} -- relação tipo-token ($V/N$); (5) \texttt{herdan\_c} -- C de Herdan ($\log V / \log N$); (6) \texttt{hapax\_prop} -- proporção de hapax legomena; (7) \texttt{char\_entropy} -- entropia de Shannon sobre caracteres; (8) \texttt{func\_word\_ratio} -- proporção de palavras funcionais (86 palavras em português); (9) \texttt{first\_person\_ratio} -- proporção de pronomes de primeira pessoa; e (10) \texttt{bigram\_repeat\_ratio} -- proporção de bigramas únicos repetidos.
 
 \subsection{Funções de Pertinência Triangulares}
 
