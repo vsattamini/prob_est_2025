@@ -37,7 +37,7 @@ A Tabela de comparação revela padrões interessantes:
 
     \item \textbf{Fuzzy tem menor variância:} $\sigma_{\text{fuzzy}} = 0.0004$ vs $\sigma_{\text{LDA}} = 0.0017$ vs $\sigma_{\text{logística}} = 0.0014$. Isto sugere que fuzzy é menos sensível à composição específica dos folds.
 
-    \item \textbf{Trade-off favorável:} a perda de 7,9\% em AUC (de 97\% para 89\%) é compensada por explicabilidade total, uma troca que pode ser valiosa em contextos sensíveis.
+    \item \textbf{Custo de oportunidade favorável:} a perda de 7,9\% em AUC (de 97\% para 89\%) é compensada por explicabilidade total, uma troca que pode ser valiosa em contextos sensíveis.
 \end{itemize}
 
 Do ponto de vista de \textbf{aplicações práticas}, a escolha entre fuzzy e métodos estatísticos depende do contexto:
@@ -76,10 +76,7 @@ Este trabalho é, ao nosso conhecimento, o \textbf{primeiro a aplicar lógica fu
     \item A interpretabilidade fuzzy é particularmente valiosa para análise estilométrica, onde compreender \textit{por que} um texto foi classificado é tão importante quanto a classificação em si.
 \end{enumerate}
 
-Trabalhos futuros em lógica fuzzy para NLP podem se beneficiar destas lições, explorando:
-- Funções de pertinência adaptativas que evoluem com novos dados
-- Regras fuzzy hierárquicas que capturam interações entre características
-- Sistemas neuro-fuzzy que combinam aprendizado profundo com interpretabilidade fuzzy
+Trabalhos futuros em lógica fuzzy para NLP podem explorar funções de pertinência adaptativas, regras fuzzy hierárquicas, e sistemas neuro-fuzzy.
 
 \subsection{Limitações e Trabalhos Futuros}
 
@@ -96,7 +93,7 @@ Além das limitações já mencionadas (simplicidade do sistema, independência 
 Direções futuras específicas para lógica fuzzy:
 \begin{enumerate}
     \item Explorar operadores de agregação alternativos (Choquet integral, média ordenada ponderada)
-    \item Implementar aprendizado de parâmetros fuzzy via otimização meta-heurística
-    \item Desenvolver interfaces interativas onde usuários ajustam funções de pertinência em tempo real
+    \item Implementar aprendizado de parâmetros fuzzy via otimização
     \item Aplicar sistemas fuzzy tipo-2 para modelar incerteza nas próprias funções de pertinência
+    \item Validar em domínios textuais específicos e com múltiplos modelos de LLM
 \end{enumerate}

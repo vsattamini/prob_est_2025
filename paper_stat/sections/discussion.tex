@@ -41,41 +41,27 @@ Várias limitações devem ser reconhecidas:
 
     \item \textbf{Características manuais:} as 10 características foram selecionadas manualmente com base na literatura. Técnicas de seleção automática de características (e.g., LASSO, Random Forest feature importance) poderiam identificar combinações mais informativas.
 
-    \item \textbf{Generalização entre domínios:} o estudo avalia performance em textos genéricos de múltiplas fontes, mas não testa explicitamente generalização cross-domain. Evidências da literatura~\cite{brennan2016} demonstram que características estilométricas podem degradar significativamente quando treinadas em um domínio (e.g., acadêmico) e testadas em outro (e.g., redes sociais). Avaliação futura deveria incluir testes em domínios específicos (notícias, literatura, código, conversas) para validar robustez.
+    \item \textbf{Generalização entre domínios:} o estudo avalia performance em textos genéricos de múltiplas fontes, mas não testa explicitamente generalização cross-domain. Evidências da literatura~\cite{brennan2016} demonstram que características estilométricas podem degradar significativamente quando treinadas em um domínio (e.g., acadêmico) e testadas em outro (e.g., redes sociais).
 
     \item \textbf{Limitações do Type-Token Ratio:} a métrica TTR tem sido criticada desde 1987~\cite{richards1987} por dependência do comprimento do texto. Alternativas como MTLD (Measure of Textual Lexical Diversity)~\cite{mccarthy2010} oferecem medidas invariantes ao tamanho e poderiam fortalecer a análise.
 \end{enumerate}
 
 \subsection{Implicações Práticas}
 
-Os resultados têm implicações diretas para várias aplicações:
-
-\begin{itemize}
-    \item \textbf{Educação:} sistemas de detecção de plágio podem incorporar características estilométricas para identificar trabalhos gerados por IA, auxiliando educadores a manter a integridade acadêmica.
-
-    \item \textbf{Moderação de conteúdo:} plataformas online podem usar classificadores estilométricos para detectar spam, desinformação ou conteúdo gerado automaticamente em massa.
-
-    \item \textbf{Integridade científica:} editores e revisores podem aplicar análise estilométrica para identificar manuscritos suspeitos gerados (total ou parcialmente) por LLMs, especialmente em áreas onde a originalidade é crítica.
-
-    \item \textbf{Forense digital:} análise forense de textos pode beneficiar-se de métodos estilométricos para atribuição de autoria ou detecção de manipulação.
-\end{itemize}
-
-Entretanto, é importante ressaltar que \textbf{classificadores estilométricos não devem ser usados de forma punitiva sem investigação adicional}. Falsos positivos podem prejudicar indivíduos inocentes, e a detecção automática deve ser vista como uma ferramenta de triagem, não como veredicto final.
+Os resultados demonstram a viabilidade de detecção estilométrica de LLMs em português do Brasil. Entretanto, é importante ressaltar que \textbf{classificadores estilométricos não devem ser usados de forma punitiva sem investigação adicional}. Falsos positivos podem prejudicar indivíduos inocentes, e a detecção automática deve ser vista como uma ferramenta de triagem, não como veredicto final. Aplicações práticas em educação, moderação de conteúdo, integridade científica e forense digital requerem validação adicional em contextos específicos.
 
 \subsection{Direções Futuras}
 
 Trabalhos futuros podem explorar:
 
 \begin{enumerate}
-    \item \textbf{Estudos multilíngues:} aplicar a mesma metodologia a outras línguas (espanhol, francês, alemão, etc.) para avaliar a universalidade dos padrões estilométricos.
+    \item \textbf{Validação cross-domain:} avaliar desempenho em gêneros textuais específicos (acadêmico, jornalístico, literário) onde LLMs podem comportar-se diferentemente.
+
+    \item \textbf{Estudos multilíngues:} aplicar a mesma metodologia a outras línguas para avaliar a universalidade dos padrões estilométricos.
 
     \item \textbf{Análise longitudinal:} coletar dados de múltiplas gerações de LLMs e avaliar como as características estilométricas evoluem ao longo do tempo.
 
-    \item \textbf{Detecção em domínios específicos:} avaliar desempenho em gêneros textuais específicos (acadêmico, jornalístico, literário, código) onde LLMs podem comportar-se diferentemente.
+    \item \textbf{Textos híbridos:} desenvolver métodos para detectar textos parcialmente editados por humanos após geração por LLM.
 
-    \item \textbf{Textos híbridos:} desenvolver métodos para detectar textos parcialmente editados por humanos após geração por LLM (cenário comum em uso real).
-
-    \item \textbf{Características neurais:} combinar características estilométricas clássicas com embeddings contextuais (BERT, GPT) para classificação híbrida.
-
-    \item \textbf{Explicabilidade:} desenvolver visualizações interativas que permitam usuários finais compreender \textit{por que} um texto foi classificado como humano ou LLM.
+    \item \textbf{Características adicionais:} explorar métricas alternativas de diversidade lexical (MTLD), embeddings contextuais, ou seleção automática de características.
 \end{enumerate}
