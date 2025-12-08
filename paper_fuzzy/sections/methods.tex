@@ -16,7 +16,7 @@ A lógica fuzzy, proposta por Zadeh~\cite{zadeh1965}, estende a lógica Booleana
 
 Utilizou-se um corpus balanceado de textos em português do Brasil contendo 100.000 amostras (50.000 autorais, 50.000 de LLMs), extraídas por amostragem estratificada de um conjunto maior com 2.331.317 documentos originais provenientes de 5 fontes distintas. As fontes de texto autoral incluem: (i) BrWaC (Brazilian Web as Corpus), um grande corpus web de textos brasileiros; e (ii) BoolQ, contendo passagens de contexto para perguntas booleanas. As fontes de texto gerado por LLM incluem: (i) ShareGPT-Portuguese, conversas em português; (ii) resenhas do IMDB traduzidas para português por modelos de tradução automática; e (iii) o dataset Canarim, contendo saídas geradas por LLMs.
 
-Os textos foram filtrados por comprimento mínimo de 100 caracteres e máximo de 10.000 caracteres, sendo textos muito longos segmentados em chunks de até 10.000 caracteres sem sobreposição. O balanceamento foi obtido por subamostragem da classe majoritária e sobreamostragem da classe minoritária, resultando em proporções exatamente iguais (50\%/50\%).
+Os textos foram filtrados por comprimento mínimo de 100 caracteres e máximo de 10.000 caracteres, sendo textos muito longos segmentados em fragmentos de até 10.000 caracteres sem sobreposição. O balanceamento foi obtido por subamostragem da classe majoritária e sobreamostragem da classe minoritária, resultando em proporções exatamente iguais (50\%/50\%).
 
 \subsection{Características Estilométricas}
 
@@ -41,7 +41,7 @@ As funções triangulares são amplamente utilizadas em sistemas fuzzy pela simp
 
 \subsection{Determinação Orientada a Dados dos Parâmetros}
 
-Ao invés de definir parâmetros manualmente, utilizamos uma abordagem \textbf{data-driven} baseada em quantis da distribuição observada dos dados de treinamento. Para cada característica $f_i$, calculamos:
+Ao invés de definir parâmetros manualmente, utilizamos uma abordagem \textbf{orientada por dados} baseada em quantis da distribuição observada dos dados de treinamento. Para cada característica $f_i$, calculamos:
 
 \begin{itemize}
     \item Percentil 0\%: $q_0 = \min(f_i)$
@@ -95,23 +95,23 @@ A classe predita é aquela com maior probabilidade. Este esquema de agregação 
 
 \subsection{Validação Cruzada e Avaliação}
 
-O classificador fuzzy é avaliado usando a mesma estratégia de validação cruzada estratificada (5 folds) empregada nos modelos estatísticos. Isso permite comparação direta e justa entre as abordagens. Para cada fold:
+O classificador fuzzy é avaliado usando a mesma estratégia de validação cruzada estratificada (5 partições) empregada nos modelos estatísticos. Isso permite comparação direta e justa entre as abordagens. Para cada partição:
 
 \begin{enumerate}
     \item As funções de pertinência são ajustadas nos dados de treinamento (determinação de quantis)
     \item A orientação de cada característica é determinada comparando medianas
     \item Predições são realizadas no conjunto de teste
-    \item Métricas de desempenho são calculadas: ROC AUC e Average Precision
+    \item Métricas de desempenho são calculadas: ROC AUC e Precisão Média
 \end{enumerate}
 
-Reportamos a média e o desvio padrão de AUC e AP ao longo dos 5 folds. A implementação foi realizada no módulo \texttt{src/fuzzy.py}, com avaliação via \texttt{src/evaluate\_fuzzy.py}.
+Reportamos a média e o desvio padrão de AUC e AP ao longo das 5 partições. A implementação foi realizada no módulo \texttt{src/fuzzy.py}, com avaliação via \texttt{src/evaluate\_fuzzy.py}.
 
 \subsection{Vantagens da Abordagem Fuzzy}
 
 A principal vantagem do classificador fuzzy é a \textbf{interpretabilidade}: os graus de pertinência podem ser inspecionados para compreender \textit{por que} um texto foi classificado como autoral ou LLM. Por exemplo, podemos visualizar:
 \begin{itemize}
     \item Quais características contribuíram mais para a decisão
-    \item Quão ``autoral-like'' ou ``LLM-like'' um texto é em cada dimensão
+    \item Quão típico de texto autoral ou de LLM um texto é em cada dimensão
     \item Casos de incerteza (alto $\mu_{medium}$ em várias características)
 \end{itemize}
 

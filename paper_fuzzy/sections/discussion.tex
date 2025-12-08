@@ -19,7 +19,7 @@ Entretanto, esta perda é acompanhada de ganhos significativos:
 As limitações principais da abordagem fuzzy incluem:
 
 \begin{enumerate}
-    \item \textbf{Simplicidade excessiva:} funções triangulares e agregação por média são escolhas básicas. Funções Gaussianas, trapezoidais ou bell-shaped, combinadas com operadores de agregação mais sofisticados (Choquet, Sugeno), poderiam melhorar o desempenho.
+    \item \textbf{Simplicidade excessiva:} funções triangulares e agregação por média são escolhas básicas. Funções Gaussianas, trapezoidais ou em forma de sino, combinadas com operadores de agregação mais sofisticados (Choquet, Sugeno), poderiam melhorar o desempenho.
 
     \item \textbf{Independência de características:} o sistema atual trata cada característica independentemente, ignorando correlações. Regras fuzzy multi-dimensionais (e.g., ``SE ttr É alto E sent\_std É baixo ENTÃO llm'') poderiam capturar interações.
 
@@ -35,7 +35,7 @@ A Tabela de comparação revela padrões interessantes:
 \begin{itemize}
     \item \textbf{Logística $>$ LDA $>$ Fuzzy:} hierarquia clara de desempenho, com diferenças consistentes de ~3\% e ~5\%.
 
-    \item \textbf{Fuzzy tem menor variância:} $\sigma_{\text{fuzzy}} = 0.0004$ vs $\sigma_{\text{LDA}} = 0.0017$ vs $\sigma_{\text{logística}} = 0.0014$. Isto sugere que fuzzy é menos sensível à composição específica dos folds.
+    \item \textbf{Fuzzy tem menor variância:} $\sigma_{\text{fuzzy}} = 0.0004$ vs $\sigma_{\text{LDA}} = 0.0017$ vs $\sigma_{\text{logística}} = 0.0014$. Isto sugere que fuzzy é menos sensível à composição específica das partições.
 
     \item \textbf{Custo de oportunidade favorável:} a perda de 7,9\% em AUC (de 97\% para 89\%) é compensada por explicabilidade total, uma troca que pode ser valiosa em contextos sensíveis.
 \end{itemize}
@@ -62,7 +62,7 @@ A visualização das funções de pertinência (Figura~\ref{fig:fuzzy_membership
     \item \textbf{Sent\_std:} a sobreposição moderada entre distribuições explica o desempenho fuzzy -- há ambiguidade inerente que dificulta classificação baseada apenas nesta característica.
 \end{itemize}
 
-As funções de pertinência determinadas por quantis (33\%, 50\%, 66\%) capturam bem a estrutura dos dados, mas \textbf{não otimizam diretamente para separação de classes}. Abordagens futuras poderiam aprender thresholds discriminativos (e.g., via algoritmos genéticos, otimização por enxame de partículas) para maximizar AUC.
+As funções de pertinência determinadas por quantis (33\%, 50\%, 66\%) capturam bem a estrutura dos dados, mas \textbf{não otimizam diretamente para separação de classes}. Abordagens futuras poderiam aprender limiares discriminativos (e.g., via algoritmos genéticos, otimização por enxame de partículas) para maximizar AUC.
 
 \subsection{Contribuição para a Literatura de Lógica Fuzzy}
 
@@ -71,7 +71,7 @@ Este trabalho é, ao nosso conhecimento, o \textbf{primeiro a aplicar lógica fu
 \begin{enumerate}
     \item Sistemas fuzzy simples (triangulares, agregação por média) já alcançam ~89\% AUC, um resultado competitivo.
 
-    \item A abordagem data-driven (quantis) elimina a necessidade de definição manual de parâmetros, tornando o método escalável.
+    \item A abordagem orientada por dados (quantis) elimina a necessidade de definição manual de parâmetros, tornando o método escalável.
 
     \item A interpretabilidade fuzzy é particularmente valiosa para análise estilométrica, onde compreender \textit{por que} um texto foi classificado é tão importante quanto a classificação em si.
 \end{enumerate}

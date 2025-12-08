@@ -6,7 +6,7 @@ Os resultados demonstram de forma conclusiva que \textbf{textos autorais e texto
 
 A característica mais discriminante, \textbf{entropia de caracteres} ($\delta = -0.881$), revela que textos autorais apresentam distribuições de caracteres significativamente mais heterogêneas. Esta diferença pode estar relacionada a vários fatores: (i) maior diversidade de pontuação e formatação em textos autênticos (web, fóruns, redes sociais); (ii) maior variabilidade ortográfica, incluindo erros de digitação e variações dialetais; e (iii) uso mais variado de caracteres especiais, emoticons e símbolos. LLMs, treinados para gerar texto ``correto'' e bem formatado, tendem a produzir distribuições de caracteres mais uniformes e previsíveis.
 
-A \textbf{variabilidade estrutural}, medida por \texttt{sent\_std} ($\delta = -0.790$) e \texttt{sent\_burst} ($\delta = -0.663$), também favorece fortemente textos autorais. Este resultado é consistente com a observação de que escritores exibem maior irregularidade sintática, alternando entre frases curtas e longas de forma mais natural e menos previsível. LLMs, por outro lado, tendem a gerar textos com estrutura mais regular, possivelmente devido aos mecanismos de atenção e às probabilidades de transição aprendidas durante o treinamento, que favorecem padrões consistentes.
+A \textbf{variabilidade estrutural}, medida pelo desvio padrão do comprimento de frases ($\delta = -0.790$) e pelo coeficiente de variação ($\delta = -0.663$), também favorece fortemente textos autorais. Este resultado é consistente com a observação de que escritores exibem maior irregularidade sintática, alternando entre frases curtas e longas de forma mais natural e menos previsível. LLMs, por outro lado, tendem a gerar textos com estrutura mais regular, possivelmente devido aos mecanismos de atenção e às probabilidades de transição aprendidas durante o treinamento, que favorecem padrões consistentes.
 
 Surpreendentemente, a \textbf{diversidade lexical} (TTR, hapax, Herdan's C) é \textit{maior} em textos de LLM. Este resultado aparentemente contra-intuitivo pode ser explicado por: (i) o treinamento em corpora extremamente vastos e diversos, expondo o modelo a vocabulário amplo; (ii) a menor tendência a repetir palavras, característica de modelos de linguagem modernos que penalizam repetição excessiva; e (iii) o fato de que textos autorais no corpus BrWaC podem incluir gêneros específicos (e.g., notícias, blogs) que naturalmente apresentam menor diversidade lexical por tratarem de tópicos especializados.
 
@@ -16,7 +16,7 @@ O excelente desempenho dos classificadores lineares (LDA: 94,12\%, Logística: 9
 
 A superioridade da regressão logística sobre LDA (~3 pontos percentuais) sugere que, embora a separação seja aproximadamente linear, as distribuições das características não são perfeitamente Gaussianas -- uma suposição central da LDA. A regressão logística, sendo um modelo discriminativo que não assume forma distribucional específica, é mais robusta a violações de normalidade, justificando sua performance superior.
 
-A análise de componentes principais revela que PC1 (38\% de variância) representa essencialmente um eixo de ``LLM-ness'', com características de diversidade lexical (TTR, hapax) em um extremo e características de variabilidade estrutural (burstiness, entropia) no outro. Este resultado sugere que existe uma \textbf{dimensão latente fundamental} que captura a diferença entre textos autorais e de LLM, e que esta dimensão pode ser interpretada como um custo de oportunidade entre ``diversidade lexical vs variabilidade estrutural''.
+A análise de componentes principais revela que PC1 (38\% de variância) representa essencialmente um eixo de tipicidade de LLM, com características de diversidade lexical (TTR, hapax) em um extremo e características de variabilidade estrutural (coeficiente de variação, entropia) no outro. Este resultado sugere que existe uma \textbf{dimensão latente fundamental} que captura a diferença entre textos autorais e de LLM, e que esta dimensão pode ser interpretada como um custo de oportunidade entre ``diversidade lexical vs variabilidade estrutural''.
 
 \subsection{Comparação com Estudos Anteriores}
 
@@ -39,9 +39,9 @@ Várias limitações devem ser reconhecidas:
 
     \item \textbf{Evolução temporal:} LLMs evoluem rapidamente. Os modelos de 2023--2024 podem gerar texto estilísticamente distinto dos modelos de 2025 em diante, potencialmente tornando os classificadores obsoletos. Estudos longitudinais são necessários para avaliar a durabilidade das características estilométricas.
 
-    \item \textbf{Características manuais:} as 10 características foram selecionadas manualmente com base na literatura. Técnicas de seleção automática de características (e.g., LASSO, Random Forest feature importance) poderiam identificar combinações mais informativas.
+    \item \textbf{Características manuais:} as 10 características foram selecionadas manualmente com base na literatura. Técnicas de seleção automática de características (e.g., LASSO, importância de características via florestas aleatórias) poderiam identificar combinações mais informativas.
 
-    \item \textbf{Generalização entre domínios:} o estudo avalia performance em textos genéricos de múltiplas fontes, mas não testa explicitamente generalização cross-domain. Evidências da literatura~\cite{brennan2016} demonstram que características estilométricas podem degradar significativamente quando treinadas em um domínio (e.g., acadêmico) e testadas em outro (e.g., redes sociais).
+    \item \textbf{Generalização entre domínios:} o estudo avalia desempenho em textos genéricos de múltiplas fontes, mas não testa explicitamente generalização entre domínios. Evidências da literatura~\cite{brennan2016} demonstram que características estilométricas podem degradar significativamente quando treinadas em um domínio (e.g., acadêmico) e testadas em outro (e.g., redes sociais).
 
     \item \textbf{Limitações do Type-Token Ratio:} a métrica TTR tem sido criticada desde 1987~\cite{richards1987} por dependência do comprimento do texto. Alternativas como MTLD (Measure of Textual Lexical Diversity)~\cite{mccarthy2010} oferecem medidas invariantes ao tamanho e poderiam fortalecer a análise.
 \end{enumerate}
@@ -55,7 +55,7 @@ Os resultados demonstram a viabilidade de detecção estilométrica de LLMs em p
 Trabalhos futuros podem explorar:
 
 \begin{enumerate}
-    \item \textbf{Validação cross-domain:} avaliar desempenho em gêneros textuais específicos (acadêmico, jornalístico, literário) onde LLMs podem comportar-se diferentemente.
+    \item \textbf{Validação entre domínios:} avaliar desempenho em gêneros textuais específicos (acadêmico, jornalístico, literário) onde LLMs podem comportar-se diferentemente.
 
     \item \textbf{Estudos multilíngues:} aplicar a mesma metodologia a outras línguas para avaliar a universalidade dos padrões estilométricos.
 
@@ -63,5 +63,5 @@ Trabalhos futuros podem explorar:
 
     \item \textbf{Textos híbridos:} desenvolver métodos para detectar textos parcialmente editados por humanos após geração por LLM.
 
-    \item \textbf{Características adicionais:} explorar métricas alternativas de diversidade lexical (MTLD), embeddings contextuais, ou seleção automática de características.
+    \item \textbf{Características adicionais:} explorar métricas alternativas de diversidade lexical (MTLD), representações vetoriais contextuais, ou seleção automática de características.
 \end{enumerate}
