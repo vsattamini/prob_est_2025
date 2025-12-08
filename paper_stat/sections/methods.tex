@@ -1,8 +1,12 @@
 % Methods
 
+\subsection{Mineração de Texto e Pré-processamento}
+
+A mineração de texto consiste em extrair informações úteis de dados textuais não estruturados através de técnicas estatísticas e computacionais~\cite{feldman2007}. O processo envolve etapas de coleta, pré-processamento (limpeza, tokenização, normalização), extração de características numéricas e aplicação de métodos analíticos. Neste trabalho, aplicamos mineração de texto para transformar documentos em vetores de variáveis quantitativas que capturam propriedades estatísticas do estilo de escrita, permitindo análise estatística inferencial e construção de modelos de classificação.
+
 \subsection{Conjunto de Dados}
 
-Utilizou-se um corpus balanceado de textos em português do Brasil contendo 100.000 amostras (50.000 autorais, 50.000 de LLMs), extraídas por amostragem estratificada de um conjunto maior com 2.331.317 documentos originais provenientes de 5 fontes distintas. As fontes de texto autoral incluem: (i) BrWaC (Brazilian Web as Corpus)~\cite{brwac}, um grande corpus web de textos brasileiros; e (ii) BoolQ~\cite{boolq}, contendo passagens de contexto para perguntas booleanas. As fontes de texto gerado por LLM incluem: (i) ShareGPT-Portuguese~\cite{sharegpt_portuguese}, conversas em português extraídas da plataforma ShareGPT; (ii) resenhas do IMDB traduzidas para português por modelos de tradução automática (classificadas como texto LLM); e (iii) o dataset Canarim~\cite{canarim}, contendo saídas geradas por LLMs.
+Utilizou-se um conjunto de dados textuais balanceado em português do Brasil contendo 100.000 amostras (50.000 autorais, 50.000 de LLMs), extraídas por amostragem estratificada de um conjunto maior com 2.331.317 documentos originais provenientes de 5 fontes distintas. As fontes de texto autoral incluem: (i) BrWaC (Brazilian Web as Corpus)~\cite{brwac}, um grande conjunto web de textos brasileiros; e (ii) BoolQ~\cite{boolq}, contendo passagens de contexto para perguntas booleanas. As fontes de texto gerado por LLM incluem: (i) ShareGPT-Portuguese~\cite{sharegpt_portuguese}, conversas em português extraídas da plataforma ShareGPT; (ii) resenhas do IMDB traduzidas para português por modelos de tradução automática (classificadas como texto LLM); e (iii) o dataset Canarim~\cite{canarim}, contendo saídas geradas por LLMs.
 
 Os textos foram previamente filtrados por comprimento mínimo de 100 caracteres e máximo de 10.000 caracteres, sendo textos muito longos segmentados em fragmentos de até 10.000 caracteres sem sobreposição. A segmentação priorizou quebras naturais de texto (pontos finais, parágrafos e espaços). O balanceamento foi obtido por subamostragem da classe majoritária e sobreamostragem da classe minoritária, resultando em proporções exatamente iguais (50\%/50\%). A amostra de 100.000 documentos foi selecionada aleatoriamente com semente fixa (\texttt{seed=42}) para reprodutibilidade.
 
@@ -17,7 +21,7 @@ Cada amostra de texto foi processada pelo módulo \texttt{src/features.py}, que 
 
     \item \textbf{Desvio padrão do comprimento de frase} (\texttt{sent\_std}): medida de dispersão que quantifica a variabilidade na estrutura sintática. Desvio padrão populacional (ddof=0) do número de palavras por frase. Textos com alta variabilidade sintática apresentam maior desvio padrão.
 
-    \item \textbf{Burstiness} (\texttt{sent\_burst}): coeficiente de variação do comprimento de frase, calculado como $\text{burstiness} = \sigma / \mu$, onde $\sigma$ é o desvio padrão e $\mu$ a média do comprimento de frases. Esta medida de variabilidade relativa é útil para discriminação pois normaliza a dispersão pela tendência central, permitindo comparações entre textos com diferentes médias de comprimento.
+    \item \textbf{Coeficiente de variação do comprimento de frase} (\texttt{sent\_burst}): razão entre o desvio padrão e a média do comprimento de frases ($CV = \sigma / \mu$). Esta medida de dispersão relativa normaliza a variabilidade pela tendência central, permitindo comparações entre textos com diferentes médias de comprimento. É uma estatística adimensional amplamente utilizada para comparar variabilidade entre distribuições com escalas distintas.
 
     \item \textbf{Relação tipo-token} (\texttt{ttr}): medida de diversidade lexical calculada como $\text{TTR} = V/N$, onde $V$ é o número de tipos (palavras únicas) e $N$ o número de tokens (total de palavras). Quantifica a dispersão do vocabulário: valores altos indicam maior variedade lexical.
 
@@ -25,7 +29,7 @@ Cada amostra de texto foi processada pelo módulo \texttt{src/features.py}, que 
 
     \item \textbf{Proporção de hapax legomena} (\texttt{hapax\_prop}): fração de palavras que ocorrem exatamente uma vez no texto, relativa ao total de tokens. Captura a raridade lexical e está relacionada à riqueza vocabular.
 
-    \item \textbf{Entropia de caracteres} (\texttt{char\_entropy}): medida de variabilidade na distribuição de caracteres, calculada como $H = -\sum p(c) \log_2 p(c)$, onde $p(c)$ é a probabilidade de cada caractere. Alta entropia indica distribuição mais uniforme (maior incerteza); baixa entropia indica concentração em poucos caracteres.
+    \item \textbf{Variabilidade da distribuição de caracteres} (\texttt{char\_entropy}): medida de dispersão na distribuição de frequências de caracteres, calculada pela fórmula de Shannon $H = -\sum p(c) \log_2 p(c)$, onde $p(c)$ é a frequência relativa de cada caractere. Esta medida quantifica a variabilidade: alta entropia indica distribuição mais uniforme (maior dispersão entre caracteres); baixa entropia indica concentração em poucos caracteres (menor dispersão). Estatisticamente, funciona como uma medida de dispersão análoga ao desvio padrão, mas aplicada a distribuições de frequência categórica.
 
     \item \textbf{Proporção de palavras funcionais} (\texttt{func\_word\_ratio}): fração de tokens pertencentes a uma lista curada de 86 palavras funcionais do português (artigos, preposições, conjunções e pronomes). Palavras funcionais são estáveis entre textos e apresentam menor variância que palavras de conteúdo, sendo discriminativas para detecção de autoria.
 
