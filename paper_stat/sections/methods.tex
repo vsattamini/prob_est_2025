@@ -13,6 +13,7 @@ Os textos foram previamente filtrados por comprimento mínimo de 100 caracteres 
 Para prevenir vazamento de dados, verificamos que os textos não apresentam agrupamentos estruturais por autor, tópico ou sessão de geração. A validação cruzada estratificada mantém o balanço de classes entre as partições, garantindo amostras independentes em conjuntos de treino e teste. Esta abordagem evita viés de avaliação documentado em estudos anteriores~\cite{kohavi1995}.
 
 \subsection{Extração de Características Estilométricas}
+\label{sec:features}
 
 Cada amostra de texto foi processada pelo módulo \texttt{src/features.py}, que calcula 10 métricas estilométricas contínuas em português. As características foram selecionadas por capturarem aspectos complementares da estrutura estatística e lexical dos textos:
 

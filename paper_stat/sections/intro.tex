@@ -24,3 +24,47 @@ O processo de mineração de texto compreende quatro etapas fundamentais:
 \end{enumerate}
 
 No contexto deste trabalho, a mineração de texto serve como ponte entre documentos textuais brutos e a análise estatística formal. As características extraídas (descritas na Seção \ref{sec:features}) são variáveis quantitativas mensuradas em escalas de razão ou intervalo, permitindo a aplicação de métodos estatísticos paramétricos e não paramétricos.
+
+\subsection{Estilometria e Análise de Autoria}
+
+A estilometria é o estudo quantitativo do estilo linguístico através da medição de características objetivas dos textos \cite{stamatatos2009}. Fundamenta-se no princípio de que autores possuem padrões linguísticos inconscientes e consistentes que podem ser identificados estatisticamente.
+
+\subsubsection{Fundamentos da Análise Estilométrica}
+
+A análise estilométrica baseia-se em três premissas fundamentais:
+
+\begin{enumerate}
+    \item \textbf{Consistência autoral}: Autores humanos mantêm padrões estilísticos relativamente estáveis ao longo de diferentes textos e tópicos.
+
+    \item \textbf{Variabilidade inter-autoral}: As diferenças estilísticas entre autores distintos são maiores que as variações intra-autorais.
+
+    \item \textbf{Mensurabilidade}: Características estilísticas podem ser quantificadas através de variáveis mensuráveis objetivamente.
+\end{enumerate}
+
+O trabalho seminal de \citeonline{mosteller1964} sobre os \textit{Federalist Papers} demonstrou que métodos estatísticos rigorosos podem atribuir autoria com alta confiança. A abordagem foi posteriormente formalizada por \citeonline{burrows2002} com a medida Delta, que utiliza distâncias estatísticas entre perfis estilométricos.
+
+\subsubsection{Características Estilométricas}
+
+As variáveis estilométricas utilizadas em análise de autoria podem ser categorizadas conforme suas escalas de medida:
+
+\textbf{Variáveis em escala de razão} (possuem zero absoluto e razões interpretáveis):
+\begin{itemize}
+    \item Comprimento médio de frase (palavras por frase)
+    \item Frequência de uso de pontuação específica (por 1000 palavras)
+    \item Riqueza lexical (razão tipo-token)
+    \item Proporções de classes gramaticais (substantivos, verbos, etc.)
+\end{itemize}
+
+\textbf{Variáveis em escala de intervalo} (diferenças interpretáveis, mas sem zero absoluto):
+\begin{itemize}
+    \item Entropia de distribuição de caracteres \cite{shannon1948}
+    \item Coeficiente de variação do comprimento de frase \cite{madsen2005}
+\end{itemize}
+
+A distinção entre escalas de medida é fundamental porque determina quais métodos estatísticos são aplicáveis. Variáveis em escala de razão permitem operações aritméticas completas e cálculo de medidas como média geométrica e coeficiente de variação. Variáveis em escala de intervalo permitem cálculo de médias e desvios padrão, mas não razões.
+
+\subsubsection{Detecção de Textos Gerados por LLMs}
+
+Estudos recentes demonstram que técnicas estilométricas clássicas permanecem eficazes para detectar textos gerados por modelos de linguagem de grande porte \cite{stylometric_llm_detection,stamatatos2009}. \citeonline{stylometric_llm_detection} reportaram acurácia superior a 99\% utilizando características estilométricas simples em amostras curtas (100-200 palavras).
+
+Trabalhos específicos para o português incluem \citeonline{berriche2024}, que demonstraram a eficácia de medidas de entropia de caracteres e proporção de palavras funcionais. O presente trabalho estende essa linha de pesquisa aplicando métodos estatísticos multivariados a um conjunto abrangente de características estilométricas em português do Brasil.
