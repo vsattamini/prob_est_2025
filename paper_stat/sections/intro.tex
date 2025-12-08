@@ -6,3 +6,21 @@ A emergência de modelos de linguagem de grande porte (LLMs) criou preocupaçõe
 Estudos em múltiplos idiomas confirmam a viabilidade da abordagem estilométrica: Herbold et al.~\cite{stylometric_llm_detection} reportaram 81--98\% de acurácia usando 31 características e Random Forest; Zaitsu e Jin~\cite{zaitsu2023} alcançaram 100\% de precisão em textos japoneses; Przystalski et al.~\cite{przystalski2025} demonstraram que estilometria reconhece LLMs mesmo em pequenas amostras (0,87--0,98 de acurácia); e Berriche e Larabi-Marie-Sainte~\cite{berriche2024} atingiram 100\% usando 33 características estilométricas com XGBoost. Esses resultados evidenciam que características como comprimento médio de frases, relação tipo-token, entropia de caracteres~\cite{shannon1948}, proporção de palavras funcionais~\cite{stamatatos2009} e burstiness~\cite{madsen2005} contêm sinais fortes sobre a origem do texto.
 
 Este estudo contribui para a literatura de detecção de LLMs ao fornecer uma primeira análise estilométrica para detecção de textos gerados por LLMs em português do Brasil. Não foi encontrado aplicação de análise estilométrica a textos de LLM em português. Utilizou-se um conjunto de dados balanceado com mais de 1,2 milhões de amostras de múltiplas fontes (BrWaC~\cite{brwac}, ShareGPT-Portuguese~\cite{sharegpt_portuguese}, Canarim~\cite{canarim}).\footnote{Desde a compilação deste corpus, novos recursos em português surgiram, incluindo GigaVerbo com 200B tokens~\cite{correa2024} e PTT5-v2~\cite{piau2024}, que podem beneficiar trabalhos futuros.}
+
+\subsection{Mineração de Texto}
+
+A mineração de texto é o processo de extração de informação relevante e conhecimento a partir de dados textuais não estruturados \cite{feldman2007}. Diferentemente da análise de dados tabulares tradicionais, a mineração de texto requer a transformação de documentos em representações numéricas que possibilitem a aplicação de métodos estatísticos.
+
+O processo de mineração de texto compreende quatro etapas fundamentais:
+
+\begin{enumerate}
+    \item \textbf{Coleta de dados}: Aquisição de documentos textuais de fontes diversas, garantindo representatividade da população de interesse.
+
+    \item \textbf{Pré-processamento}: Limpeza e normalização dos textos, incluindo remoção de caracteres especiais, normalização de espaços em branco, e conversão para codificação uniforme (UTF-8).
+
+    \item \textbf{Extração de características}: Transformação dos documentos em vetores de variáveis quantitativas mensuráveis. Esta etapa é crucial pois define as variáveis que serão analisadas estatisticamente.
+
+    \item \textbf{Análise estatística}: Aplicação de métodos estatísticos descritivos e inferenciais sobre as variáveis extraídas para identificar padrões, diferenças entre grupos, e construir modelos preditivos.
+\end{enumerate}
+
+No contexto deste trabalho, a mineração de texto serve como ponte entre documentos textuais brutos e a análise estatística formal. As características extraídas (descritas na Seção \ref{sec:features}) são variáveis quantitativas mensuradas em escalas de razão ou intervalo, permitindo a aplicação de métodos estatísticos paramétricos e não paramétricos.
