@@ -1,26 +1,35 @@
-% Fuzzy Set Theory Background and Methods
-
-\subsection{Fundamentos de Conjuntos Fuzzy}
-
-Um conjunto fuzzy $A$ em um universo de discurso $U$ caracteriza-se por uma função de pertinência $\mu_A: U \to [0,1]$ que atribui a cada elemento $x \in U$ um grau de pertinência no intervalo $[0,1]$~\cite{zadeh1965}. Diferentemente dos conjuntos clássicos, onde $\mu_A(x) \in \{0,1\}$, os conjuntos fuzzy permitem transições graduais quando a inclusão total ($\mu_A(x) = 1$) e exclusão total ($\mu_A(x) = 0$). Os conceitos a seguir são importantes:
-
-\begin{itemize}
-    \item \textbf{Núcleo (core):} $\{x \in U : \mu_A(x) = 1\}$, região com pertinência total
-    \item \textbf{Suporte (support):} $\{x \in U : \mu_A(x) > 0\}$, região com pertinência não-nula
-    \item \textbf{Fronteira (boundary):} região onde $0 < \mu_A(x) < 1$, pertinência parcial
-\end{itemize}
-
-A lógica fuzzy, proposta por Zadeh~\cite{zadeh1965}, estende a lógica Booleana clássica para manipular valores de verdade parciais e suportar raciocínio aproximado. Operações fundamentais incluem união (máximo), interseção (mínimo) e complemento ($1 - \mu_A(x)$).
+% Fuzzy Methodology for Authorship Detection
 
 \subsection{Mineração de Texto}
 
 A mineração de texto consiste em extrair informações úteis de dados textuais não estruturados através de técnicas estatísticas e computacionais~\cite{feldman2007}. Neste trabalho, transformamos documentos em vetores de variáveis quantitativas que capturam propriedades estatísticas do estilo de escrita, permitindo a aplicação de sistemas de inferência fuzzy para classificação.
 
-\subsection{Conjunto de Dados}
+\subsection{Conjunto de Dados e Amostragem Estratificada}
 
-Utilizou-se um conjunto de dados textuais balanceado em português do Brasil contendo 100.000 amostras (50.000 autorais, 50.000 de LLMs), extraídas por amostragem estratificada de um conjunto maior com 2.331.317 documentos originais provenientes de 5 fontes distintas. As fontes de texto autoral incluem: (i) BrWaC (Brazilian Web as Corpus), um grande conjunto web de textos brasileiros; e (ii) BoolQ, contendo passagens de contexto para perguntas booleanas. As fontes de texto gerado por LLM incluem: (i) ShareGPT-Portuguese, conversas em português; (ii) resenhas do IMDB traduzidas para português por modelos de tradução automática; e (iii) o dataset Canarim, contendo saídas geradas por LLMs.
+Utilizou-se um conjunto de dados textuais balanceado em português do Brasil contendo 100.000 amostras (50.000 autorais, 50.000 de LLMs), extraídas por \textbf{amostragem estratificada proporcional} de um conjunto maior com 2.331.317 documentos originais provenientes de 5 fontes distintas.
 
-Os textos foram filtrados por comprimento mínimo de 100 caracteres e máximo de 10.000 caracteres, sendo textos muito longos segmentados em fragmentos de até 10.000 caracteres sem sobreposição. O balanceamento foi obtido por subamostragem da classe majoritária e sobreamostragem da classe minoritária, resultando em proporções exatamente iguais (50\%/50\%).
+\subsubsection{Fontes de Dados e População}
+
+As fontes de texto autoral incluem: (i) \textbf{BrWaC} (Brazilian Web as Corpus), um grande conjunto web de textos brasileiros coletados da internet; e (ii) \textbf{BoolQ}, contendo passagens de contexto para perguntas booleanas.
+
+As fontes de texto gerado por LLM incluem: (i) \textbf{ShareGPT-Portuguese}, conversas em português geradas por modelos GPT; (ii) \textbf{IMDB Reviews}, resenhas traduzidas para português por modelos de tradução automática neural; e (iii) \textbf{Canarim}, dataset contendo saídas geradas por diversos LLMs em português.
+
+\subsubsection{Critérios de Inclusão e Pré-Processamento}
+
+Os textos foram submetidos aos seguintes critérios de filtragem:
+
+\begin{enumerate}
+    \item \textbf{Comprimento mínimo}: 100 caracteres (para garantir amostra estilométrica suficiente)
+    \item \textbf{Comprimento máximo}: 10.000 caracteres (para evitar textos excessivamente longos)
+    \item \textbf{Segmentação}: textos excedendo 10.000 caracteres foram segmentados em fragmentos de até 10.000 caracteres sem sobreposição
+    \item \textbf{Codificação}: UTF-8, com remoção de caracteres de controle não-imprimíveis
+\end{enumerate}
+
+\subsubsection{Estratégia de Balanceamento}
+
+O balanceamento de classes foi obtido por \textbf{subamostragem da classe majoritária} e \textbf{sobreamostragem da classe minoritária} em cada estrato (fonte de dados), resultando em proporções exatamente iguais (50\%/50\%). A amostragem estratificada garante que cada fonte contribua proporcionalmente ao tamanho original, preservando a diversidade estilística e reduzindo viés de seleção~\cite{cochran1977}.
+
+A estratificação por fonte é essencial porque diferentes origens apresentam variações estilísticas intrínsecas (por exemplo, conversas vs. artigos formais). Ao manter a proporção de cada fonte, garante-se que o classificador seja avaliado em um conjunto representativo da população original, aumentando a validade externa dos resultados.
 
 \subsection{Características Estilométricas}
 
@@ -81,42 +90,112 @@ Cada característica contribui com um ``voto'' para as hipóteses autoral ou LLM
 
 Para orientação inversa, os papéis de ``high'' e ``low'' são invertidos. A pertinência média ($\mu_{medium}$) contribui igualmente para ambas as classes, refletindo incerteza.
 
-\subsection{Sistema de Inferência e Classificação}
+\subsection{Sistema de Inferência Fuzzy (Takagi-Sugeno de Ordem Zero)}
 
-Para classificar um texto com características $(x_1, x_2, \ldots, x_{10})$, agregamos os votos de todas as características por média aritmética:
+O sistema de inferência fuzzy implementado segue o modelo \textbf{Takagi-Sugeno de ordem zero}~\cite{takagi1985}, no qual as consequências das regras são constantes (não funções lineares). Este modelo é adequado para classificação binária e computacionalmente eficiente.
+
+\subsubsection{Estrutura das Regras Fuzzy}
+
+O sistema é composto por regras do tipo:
+
+\begin{equation}
+\text{SE } x_i \text{ é } A_{ij} \text{ ENTÃO } y = c_k
+\end{equation}
+
+onde $x_i$ é a $i$-ésima característica estilométrica, $A_{ij}$ é um conjunto fuzzy (baixo, médio, alto), e $c_k \in \{0, 1\}$ é a classe consequente (0 = autoral, 1 = LLM).
+
+\subsubsection{Agregação de Votos}
+
+Para classificar um texto com características $(x_1, x_2, \ldots, x_{10})$, agregamos os votos de todas as características por média aritmética simples:
 
 \begin{align}
 S_{\text{autoral}} &= \frac{1}{10} \sum_{i=1}^{10} \text{voto}_{\text{autoral}}^{(i)} \\
 S_{\text{LLM}} &= \frac{1}{10} \sum_{i=1}^{10} \text{voto}_{\text{LLM}}^{(i)}
 \end{align}
 
-Os scores são normalizados para fornecer probabilidades:
+A média aritmética é um operador de agregação linear, interpretável e robusto. Pesos uniformes ($w_i = 1/10$) garantem que todas as características contribuam igualmente, evitando sobre-ajuste (overfitting) e mantendo a simplicidade do modelo.
+
+\subsubsection{Normalização e Probabilidades de Saída}
+
+Os scores são normalizados para fornecer probabilidades interpretáveis:
+
 \begin{equation}
 P(\text{autoral}) = \frac{S_{\text{autoral}}}{S_{\text{autoral}} + S_{\text{LLM}}}, \quad P(\text{LLM}) = \frac{S_{\text{LLM}}}{S_{\text{autoral}} + S_{\text{LLM}}}
 \end{equation}
 
-A classe predita é aquela com maior probabilidade. Este esquema de agregação simples corresponde a um sistema Takagi-Sugeno de ordem zero com pesos uniformes~\cite{takagi1985}. Operadores de agregação mais sofisticados (média ponderada, integrais fuzzy de Choquet ou Sugeno) poderiam ser explorados em trabalhos futuros.
+A classe predita é aquela com maior probabilidade: $\hat{y} = \arg\max\{P(\text{autoral}), P(\text{LLM})\}$.
 
-\subsection{Validação Cruzada e Avaliação}
+Esta normalização garante que $P(\text{autoral}) + P(\text{LLM}) = 1$ e $P(c) \in [0, 1]$, satisfazendo os axiomas de probabilidade.
 
-O classificador fuzzy é avaliado usando a mesma estratégia de validação cruzada estratificada (5 partições) empregada nos modelos estatísticos. Isso permite comparação direta e justa entre as abordagens. Para cada partição:
+\subsubsection{Complexidade Computacional}
+
+A complexidade de tempo para classificar um texto é $O(n \cdot m)$, onde $n = 10$ é o número de características e $m = 3$ é o número de conjuntos fuzzy por característica. Como $n$ e $m$ são constantes pequenas, a classificação é extremamente eficiente ($O(1)$ na prática), exigindo apenas 30 avaliações de funções de pertinência triangulares.
+
+Esta eficiência contrasta com métodos baseados em redes neurais ou gradient boosting, que requerem multiplicações matriciais ou avaliações de árvores profundas. A simplicidade do modelo fuzzy o torna adequado para aplicações em tempo real e dispositivos com recursos limitados.
+
+\subsection{Validação Cruzada Estratificada e Métricas de Avaliação}
+
+O classificador fuzzy é avaliado usando \textbf{validação cruzada estratificada de 5 partições} (5-fold stratified cross-validation), a mesma estratégia empregada nos modelos estatísticos. A estratificação garante que cada partição mantém a proporção de 50\%/50\% entre classes, evitando viés de avaliação.
+
+\subsubsection{Protocolo de Validação}
+
+Para cada uma das 5 partições (folds):
 
 \begin{enumerate}
-    \item As funções de pertinência são ajustadas nos dados de treinamento (determinação de quantis)
-    \item A orientação de cada característica é determinada comparando medianas
-    \item Predições são realizadas no conjunto de teste
-    \item Métricas de desempenho são calculadas: ROC AUC e Precisão Média
+    \item \textbf{Separação treino/teste}: 80\% dos dados são destinados ao treinamento, 20\% ao teste
+    \item \textbf{Ajuste de parâmetros}: as funções de pertinência são determinadas no conjunto de treinamento através dos quantis (33\%, 50\%, 66\%)
+    \item \textbf{Determinação de orientação}: a orientação (direta/inversa) de cada característica é estabelecida comparando as medianas dos dois grupos no conjunto de treinamento
+    \item \textbf{Classificação}: predições são realizadas no conjunto de teste (nunca visto durante o ajuste)
+    \item \textbf{Cálculo de métricas}: ROC AUC e Precisão Média (Average Precision) são computadas
 \end{enumerate}
 
-Reportamos a média e o desvio padrão de AUC e AP ao longo das 5 partições. A implementação foi realizada no módulo \texttt{src/fuzzy.py}, com avaliação via \texttt{src/evaluate\_fuzzy.py}.
+\subsubsection{Métricas de Desempenho}
 
-\subsection{Vantagens da Abordagem Fuzzy}
+As métricas reportadas são:
 
-A principal vantagem do classificador fuzzy é a \textbf{interpretabilidade}: os graus de pertinência podem ser inspecionados para compreender \textit{por que} um texto foi classificado como autoral ou LLM. Por exemplo, podemos visualizar:
 \begin{itemize}
-    \item Quais características contribuíram mais para a decisão
-    \item Quão típico de texto autoral ou de LLM um texto é em cada dimensão
-    \item Casos de incerteza (alto $\mu_{medium}$ em várias características)
+    \item \textbf{ROC AUC} (Area Under the Receiver Operating Characteristic Curve): mede a capacidade discriminativa do classificador, independente do limiar de decisão. Varia de 0 a 1, onde 0.5 indica desempenho aleatório e 1.0 indica discriminação perfeita~\cite{fawcett2006}.
+    \item \textbf{Precisão Média} (Average Precision): resumo da curva precisão-revocação, útil para datasets balanceados.
+    \item \textbf{Desvio Padrão}: medida de dispersão dos resultados entre as 5 partições, indicando a estabilidade do modelo.
 \end{itemize}
 
-Esta transparência contrasta com modelos de caixa-preta (redes neurais profundas, por exemplo) e facilita a análise qualitativa e a depuração do sistema. Além disso, a abordagem fuzzy permite incorporar conhecimento especializado linguístico na construção das funções de pertinência, embora neste trabalho tenhamos optado pela determinação automática via quantis.
+Reportamos a média e o desvio padrão de AUC ao longo das 5 partições. A implementação foi realizada no módulo \texttt{src/fuzzy.py}, com avaliação via \texttt{src/evaluate\_fuzzy.py}, utilizando a biblioteca scikit-learn~\cite{scikit-learn} para cálculo de métricas.
+
+\subsection{Robustez e Vantagens da Abordagem Fuzzy}
+
+A abordagem fuzzy apresenta três vantagens principais em relação a métodos estatísticos complexos: \textbf{interpretabilidade total}, \textbf{robustez superior} e \textbf{eficiência computacional}.
+
+\subsubsection{Interpretabilidade}
+
+A principal vantagem do classificador fuzzy é a \textbf{interpretabilidade completa}: os graus de pertinência e as regras de inferência podem ser inspecionados para compreender \textit{por que} um texto foi classificado como autoral ou LLM. Esta transparência permite:
+
+\begin{itemize}
+    \item \textbf{Auditoria}: identificar quais características contribuíram mais para a decisão
+    \item \textbf{Análise qualitativa}: verificar quão típico de texto autoral ou de LLM um texto é em cada dimensão estilométrica
+    \item \textbf{Detecção de incerteza}: casos com alto $\mu_{medium}$ em várias características indicam textos ambíguos ou fronteiriços
+    \item \textbf{Validação especializada}: linguistas podem verificar se as regras fuzzy capturam intuições válidas sobre estilo
+\end{itemize}
+
+Esta transparência contrasta fortemente com modelos de caixa-preta (redes neurais profundas, gradient boosting), que não permitem inspeção direta do processo decisório.
+
+\subsubsection{Robustez a Valores Extremos}
+
+O uso de \textbf{quantis (estatísticas de ordem)} para determinar os parâmetros das funções de pertinência confere ao modelo fuzzy \textbf{resistência a valores extremos} (outliers)~\cite{wilcox2012}. Quantis são estatísticas robustas que não são afetadas por observações extremas, ao contrário de médias e desvios padrão.
+
+Esta propriedade resulta em \textbf{estabilidade excepcional}: enquanto métodos paramétricos (Regressão Logística, LDA) apresentam desvio padrão de AUC na ordem de $\pm 0.10\%$ a $\pm 0.15\%$, o classificador fuzzy atinge variância 3–4 vezes menor ($\pm 0.04\%$), conforme demonstrado nos resultados.
+
+\subsubsection{Custo de Oportunidade (Trade-off Interpretabilidade vs. Acurácia)}
+
+A escolha da abordagem fuzzy implica um \textbf{custo de oportunidade}: o desempenho preditivo (AUC $\approx$ 89\%) é ligeiramente inferior ao de métodos estatísticos complexos (Regressão Logística com AUC $\approx$ 97\%). Esta diferença de aproximadamente 8 pontos percentuais representa o \textit{preço} pago pela obtenção de:
+
+\begin{enumerate}
+    \item Interpretabilidade total (explicabilidade de cada decisão)
+    \item Robustez superior (menor variância, maior estabilidade)
+    \item Eficiência computacional (complexidade $O(1)$)
+\end{enumerate}
+
+Este trade-off é análogo à escolha entre um modelo de regressão linear (interpretável, menos flexível) e uma rede neural profunda (alta capacidade, caixa-preta). Em contextos onde a \textbf{explicabilidade} é crítica -- como detecção de plágio acadêmico, auditoria de integridade científica, ou sistemas de suporte à decisão educacional -- o custo de 8 pontos percentuais é justificável e aceitável.
+
+\subsubsection{Incorporação de Conhecimento Especializado}
+
+Embora neste trabalho tenha-se optado pela determinação automática de parâmetros via quantis (abordagem orientada a dados), a abordagem fuzzy permite a incorporação de \textbf{conhecimento linguístico especializado} na construção das funções de pertinência. Linguistas e estilometristas podem ajustar os parâmetros $(a, b, c)$ manualmente para refletir intuições sobre estilo, complementando a evidência empírica com conhecimento teórico -- uma flexibilidade não disponível em métodos puramente estatísticos.
