@@ -12,3 +12,79 @@ A principal vantagem da abordagem fuzzy é a \textbf{interpretabilidade}: ao con
 A lógica fuzzy tem sido amplamente aplicada em processamento de linguagem natural, especialmente em análise de sentimentos~\cite{vashishtha2023} e classificação de texto~\cite{liu2024}. Trabalhos recentes também exploram sistemas fuzzy interpretativos baseados em fundamentos axiomáticos~\cite{wang2024fuzzy}, demonstrando a viabilidade de sistemas transparentes e auditáveis. Contudo, até onde sabemos, nenhum estudo anterior aplicou lógica fuzzy especificamente à detecção de textos gerados por inteligência artificial. Enquanto LLMs têm sido analisados predominantemente por métodos estatísticos ou de aprendizado profundo, este trabalho propõe a utilização de sistemas de inferência fuzzy como alternativa explicável, eficiente e de fácil interpretação.
 
 Os resultados apresentados demonstram que classificadores fuzzy simples podem alcançar desempenho competitivo (AUC de 89\%) em comparação com abordagens estatísticas mais complexas, preservando ao mesmo tempo transparência e interpretabilidade.
+
+\subsection{Fundamentos de Conjuntos Fuzzy}
+
+A teoria de conjuntos fuzzy, introduzida por Zadeh~\cite{zadeh1965}, estende a teoria clássica de conjuntos ao permitir que elementos apresentem \textbf{graus de pertinência} a um conjunto, em vez de pertencimento binário (0 ou 1). Essa generalização é essencial para modelar conceitos linguísticos vagos, como ``alta diversidade lexical'' ou ``estrutura sintática complexa'', que não admitem fronteiras rígidas.
+
+\subsubsection{Definição Formal de Conjunto Fuzzy}
+
+Seja $X$ um conjunto universo. Um conjunto fuzzy $A$ em $X$ é caracterizado por uma \textbf{função de pertinência} $\mu_A: X \to [0,1]$, que atribui a cada elemento $x \in X$ um grau de pertinência $\mu_A(x)$:
+
+\begin{equation}
+A = \{(x, \mu_A(x)) \mid x \in X, \mu_A(x) \in [0,1]\}
+\end{equation}
+
+Quando $\mu_A(x) = 1$, o elemento $x$ pertence completamente ao conjunto $A$. Quando $\mu_A(x) = 0$, $x$ não pertence a $A$. Valores intermediários ($0 < \mu_A(x) < 1$) indicam pertencimento parcial. Essa gradualidade é a característica distintiva da lógica fuzzy em relação à lógica booleana clássica.
+
+\subsubsection{Operações sobre Conjuntos Fuzzy}
+
+As operações fundamentais sobre conjuntos fuzzy são definidas como extensões das operações clássicas~\cite{klir1995}:
+
+\begin{itemize}
+    \item \textbf{União} (operador OR): $\mu_{A \cup B}(x) = \max(\mu_A(x), \mu_B(x))$
+    \item \textbf{Interseção} (operador AND): $\mu_{A \cap B}(x) = \min(\mu_A(x), \mu_B(x))$
+    \item \textbf{Complemento} (operador NOT): $\mu_{\overline{A}}(x) = 1 - \mu_A(x)$
+\end{itemize}
+
+Essas operações, conhecidas como \textit{operadores de Zadeh}, satisfazem as propriedades de comutatividade, associatividade e distributividade, e generalizam a álgebra booleana ao caso contínuo.
+
+\subsubsection{Variáveis Linguísticas e Funções de Pertinência}
+
+Uma \textbf{variável linguística}~\cite{zadeh1975linguistic} é uma variável cujos valores são palavras ou frases da linguagem natural, em vez de números. Por exemplo, a variável linguística ``Diversidade Lexical'' pode assumir os valores \{\textit{baixa}, \textit{média}, \textit{alta}\}, cada um representado por um conjunto fuzzy.
+
+As \textbf{funções de pertinência} modelam a semântica desses termos linguísticos. Funções triangulares, adotadas neste trabalho, são definidas por três parâmetros $(a,b,c)$, onde $a$ e $c$ delimitam a base do triângulo e $b$ representa o ponto de pertinência máxima ($\mu(b) = 1$):
+
+\begin{equation}
+\mu_{\text{triangular}}(x; a,b,c) =
+\begin{cases}
+0 & \text{se } x \leq a \\
+\frac{x-a}{b-a} & \text{se } a < x \leq b \\
+\frac{c-x}{c-b} & \text{se } b < x < c \\
+0 & \text{se } x \geq c
+\end{cases}
+\end{equation}
+
+Funções triangulares são amplamente utilizadas pela simplicidade de implementação e baixo custo computacional, sem perda significativa de expressividade~\cite{pedrycz1994}.
+
+\subsubsection{Sistemas de Inferência Fuzzy}
+
+Um \textbf{sistema de inferência fuzzy} (SIF) é composto por quatro componentes principais~\cite{wang1997}:
+
+\begin{enumerate}
+    \item \textbf{Fuzzificação}: converte valores de entrada numéricos em graus de pertinência aos conjuntos fuzzy de entrada.
+    \item \textbf{Base de Regras}: conjunto de regras fuzzy do tipo ``Se-Então'' (IF-THEN), expressando conhecimento especializado ou relações aprendidas dos dados.
+    \item \textbf{Motor de Inferência}: aplica operações fuzzy (min, max, produto) para agregar as regras ativadas.
+    \item \textbf{Defuzzificação}: converte os graus de pertinência de saída em um valor numérico (por exemplo, usando o método do centroide).
+\end{enumerate}
+
+Os dois tipos mais comuns de SIF são:
+
+\begin{itemize}
+    \item \textbf{Mamdani}: utiliza conjuntos fuzzy tanto na entrada quanto na saída, gerando saídas linguísticas. É altamente interpretável, mas computacionalmente mais custoso.
+    \item \textbf{Takagi-Sugeno (TS)}: utiliza funções matemáticas (tipicamente lineares ou constantes) como consequentes das regras. O modelo TS de ordem zero (consequentes constantes) é computacionalmente eficiente e adequado para problemas de classificação.
+\end{itemize}
+
+Neste trabalho, adotou-se o modelo \textbf{Takagi-Sugeno de ordem zero}, no qual cada regra atribui uma classe constante (0 para autoral, 1 para LLM) com base na ativação das condições fuzzy. A decisão final é obtida pela média ponderada das saídas, ponderadas pelos graus de ativação das regras.
+
+\subsubsection{Justificativa para o Uso de Lógica Fuzzy}
+
+A escolha da lógica fuzzy para a detecção de textos gerados por LLMs fundamenta-se em três pilares:
+
+\begin{enumerate}
+    \item \textbf{Interpretabilidade}: ao contrário de modelos de caixa-preta (redes neurais, gradient boosting), os graus de pertinência e as regras fuzzy são inspecionáveis, permitindo auditoria e compreensão do processo decisório.
+    \item \textbf{Robustez}: o uso de quantis para determinar os parâmetros das funções de pertinência torna o modelo resistente a valores extremos (\textit{outliers}), resultando em variância excepcionalmente baixa ($\pm 0.04\%$).
+    \item \textbf{Modelagem de Incerteza}: características estilométricas apresentam gradualidade natural (um texto pode ser ``moderadamente variável lexicalmente''), que a lógica fuzzy captura de forma direta, sem necessidade de discretização arbitrária.
+\end{enumerate}
+
+Embora o desempenho preditivo (AUC de 89\%) seja ligeiramente inferior ao de métodos estatísticos complexos (97\%), essa diferença de 8 pontos percentuais representa o \textbf{custo de oportunidade} para obtenção de transparência total e estabilidade superior. Essa escolha é particularmente relevante em contextos de integridade acadêmica e auditoria, onde a explicabilidade é tão importante quanto a acurácia.

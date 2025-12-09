@@ -43,22 +43,11 @@
 {CLIFF, N. Dominance statistics: Ordinal analyses to answer ordinal questions.
 \textbf{Psychological Bulletin}, v.~114, p. 494--509, 1993.}
 
-\bibitem[Cliff 1996]{cliff1996}
-\abntrefinfo{Cliff}{CLIFF}{1996}
-{CLIFF, N. \textbf{Ordinal Methods for Behavioral Data Analysis}. [S.l.]:
-  Psychology Press, 1996.}
-
 \bibitem[Corrêa et al. 2024]{correa2024}
 \abntrefinfo{Corrêa et al.}{CORRêA et al.}{2024}
 {CORRêA, N.~K. et al. Tucano: Advancing neural text generation for portuguese.
 \textbf{arXiv preprint arXiv:2411.07854}, 2024.
 GigaVerbo corpus with 200B tokens.}
-
-\bibitem[Davis e Goadrich 2006]{davis2006}
-\abntrefinfo{Davis e Goadrich}{DAVIS; GOADRICH}{2006}
-{DAVIS, J.; GOADRICH, M. The relationship between precision-recall and roc
-  curves. In:  \textbf{Proceedings of the 23rd International Conference on
-  Machine Learning}. [S.l.]: ACM, 2006.  (ICML '06), p. 233--240.}
 
 \bibitem[DominguesM 2023]{canarim}
 \abntrefinfo{DominguesM}{DOMINGUESM}{2023}
@@ -72,6 +61,11 @@ Dispon{\'\i}vel em:
 \abntrefinfo{Fawcett}{FAWCETT}{2006}
 {FAWCETT, T. An introduction to roc analysis.
 \textbf{Pattern Recognition Letters}, v.~27, p. 861--874, 2006.}
+
+\bibitem[Feldman e Sanger 2007]{feldman2007}
+\abntrefinfo{Feldman e Sanger}{FELDMAN; SANGER}{2007}
+{FELDMAN, R.; SANGER, J. \textbf{The Text Mining Handbook: Advanced Approaches
+  in Analyzing Unstructured Data}. [S.l.]: Cambridge University Press, 2007.}
 
 \bibitem[Filho et al. 2018]{brwac}
 \abntrefinfo{Filho et al.}{FILHO et al.}{2018}
@@ -108,6 +102,11 @@ Also available as arXiv:2311.15636.}
 \abntrefinfo{Herdan}{HERDAN}{1960}
 {HERDAN, G. \textbf{Type-token Mathematics}. [S.l.]: Mouton, 1960.}
 
+\bibitem[Hollander, Wolfe e Chicken 2013]{hollander2013}
+\abntrefinfo{Hollander, Wolfe e Chicken}{HOLLANDER; WOLFE; CHICKEN}{2013}
+{HOLLANDER, M.; WOLFE, D.~A.; CHICKEN, E. \textbf{Nonparametric Statistical
+  Methods}. 3. ed. [S.l.]: Wiley, 2013.}
+
 \bibitem[Hosmer e Lemeshow 2013]{hosmer2013}
 \abntrefinfo{Hosmer e Lemeshow}{HOSMER; LEMESHOW}{2013}
 {HOSMER, D.~W.; LEMESHOW, S. \textbf{Applied Logistic Regression}. [S.l.]:
@@ -119,11 +118,6 @@ Also available as arXiv:2311.15636.}
   Problems, methodologies, and challenges.
 \textbf{ACM SIGKDD Explorations Newsletter}, v.~26, n.~1, p. 1--15, August
   2024.}
-
-\bibitem[Hunter 2007]{matplotlib}
-\abntrefinfo{Hunter}{HUNTER}{2007}
-{HUNTER, J.~D. Matplotlib: A 2d graphics environment.
-\textbf{Computing in Science Engineering}, 2007.}
 
 \bibitem[Jolliffe 2002]{jolliffe2002}
 \abntrefinfo{Jolliffe}{JOLLIFFE}{2002}
@@ -155,6 +149,12 @@ Also available as arXiv:2311.15636.}
 {MCCARTHY, P.~M.; JARVIS, S. Mtld, vocd-d, and hd-d: A validation study of
   sophisticated approaches to lexical diversity assessment.
 \textbf{Behavior Research Methods}, v.~42, n.~2, p. 381--392, 2010.}
+
+\bibitem[McFadden 1977]{mcfadden1977}
+\abntrefinfo{McFadden}{MCFADDEN}{1977}
+{MCFADDEN, D. Quantitative methods for analyzing travel behaviour of
+  individuals: Some recent developments.
+\textbf{Behavioural Travel Modelling}, Croom Helm London, p. 279--318, 1977.}
 
 \bibitem[McKinney 2010]{pandas}
 \abntrefinfo{McKinney}{MCKINNEY}{2010}
@@ -208,11 +208,23 @@ Also available as arXiv:2311.15636.}
 {SHANNON, C.~E. A mathematical theory of communication.
 \textbf{Bell System Technical Journal}, v.~27, n.~3, p. 379--423, 1948.}
 
+\bibitem[Siegel e Castellan 1988]{siegel1988}
+\abntrefinfo{Siegel e Castellan}{SIEGEL; CASTELLAN}{1988}
+{SIEGEL, S.; CASTELLAN, N.~J. \textbf{Nonparametric Statistics for the
+  Behavioral Sciences}. [S.l.]: McGraw-Hill, 1988.}
+
 \bibitem[Stamatatos 2009]{stamatatos2009}
 \abntrefinfo{Stamatatos}{STAMATATOS}{2009}
 {STAMATATOS, E. A survey of modern authorship attribution methods.
 \textbf{Journal of the American Society for Information Science and
   Technology}, v.~60, n.~3, p. 538--556, 2009.}
+
+\bibitem[Virtanen e {SciPy 1.0 Contributors} 2020]{scipy}
+\abntrefinfo{Virtanen e {SciPy 1.0 Contributors}}{VIRTANEN; {SciPy 1.0
+  Contributors}}{2020}
+{VIRTANEN, P.; {SciPy 1.0 Contributors}. Scipy 1.0: fundamental algorithms for
+  scientific computing in python.
+\textbf{Nature Methods}, v.~17, p. 261--272, 2020.}
 
 \bibitem[Zaitsu e Jin 2023]{zaitsu2023}
 \abntrefinfo{Zaitsu e Jin}{ZAITSU; JIN}{2023}
