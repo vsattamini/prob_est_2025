@@ -68,3 +68,24 @@ A distinção entre escalas de medida é fundamental porque determina quais mét
 Estudos recentes demonstram que técnicas estilométricas clássicas permanecem eficazes para detectar textos gerados por modelos de linguagem de grande porte \cite{stylometric_llm_detection,stamatatos2009}. \citeonline{stylometric_llm_detection} reportaram acurácia superior a 99\% utilizando características estilométricas simples em amostras curtas (100-200 palavras).
 
 Trabalhos específicos para o português incluem \citeonline{berriche2024}, que demonstraram a eficácia de medidas de entropia de caracteres e proporção de palavras funcionais. O presente trabalho estende essa linha de pesquisa aplicando métodos estatísticos multivariados a um conjunto abrangente de características estilométricas em português do Brasil.
+
+\subsection{Justificativa para Múltiplos Métodos Estatísticos}
+
+Este trabalho aplica três métodos multivariados complementares (PCA, LDA, Regressão Logística) por razões metodológicas distintas, não redundantes:
+
+\begin{enumerate}
+    \item \textbf{PCA - Análise Exploratória}: Método não supervisionado para visualização de estrutura natural dos dados e identificação de padrões sem conhecimento prévio das classes. Responde: \textit{``As variáveis se agrupam naturalmente por categoria (humano/LLM) sem supervisão?''}
+
+    \item \textbf{LDA - Discriminação Ótima}: Método supervisionado que maximiza separação entre grupos conhecidos. Enquanto PCA maximiza variância total, LDA maximiza variância \textit{between-group} relativa à \textit{within-group}. Responde: \textit{``Qual combinação linear de variáveis melhor discrimina os grupos?''}
+
+    \item \textbf{Regressão Logística - Modelagem Preditiva}: Método probabilístico que quantifica contribuição individual de cada variável e permite interpretação através de odds ratios. Responde: \textit{``Qual a probabilidade de um novo texto ser humano dado seu perfil estilométrico?''}
+\end{enumerate}
+
+\textbf{Complementaridade metodológica}:
+\begin{itemize}
+    \item PCA é \textbf{descritivo} (sem hipóteses)
+    \item LDA é \textbf{discriminativo} (maximiza separação)
+    \item Regressão Logística é \textbf{preditivo e inferencial} (estima probabilidades e testa significância)
+\end{itemize}
+
+Esta abordagem triangulada fortalece as conclusões: se os três métodos independentes convergem para as mesmas variáveis como importantes, aumenta a confiança na robustez dos achados.
