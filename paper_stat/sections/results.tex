@@ -112,12 +112,12 @@ A Tabela \ref{tab:lda_anova} apresenta os resultados do teste de Lambda de Wilks
 \hline
 \textbf{Estatística} & \textbf{Valor} & \textbf{F} & \textbf{gl} & \textbf{$p$-valor} \\
 \hline
-Lambda de Wilks ($\Lambda$) & [VALOR] & [VALOR] & [gl1, gl2] & $< 0.001$ \\
+Lambda de Wilks ($\Lambda$) & 0.4911 & 7535.47 & (11, 79988) & $< 0.001$ \\
 \hline
 \end{tabular}
 \end{table}
 
-O valor de Lambda de Wilks = [VALOR] indica [interpretação]. A estatística $F$ = [VALOR] com $p < 0.001$ rejeita fortemente a hipótese nula de igualdade de centroides, confirmando que a LDA discrimina significativamente entre textos humanos e LLM.
+O valor de Lambda de Wilks = 0.4911 indica forte discriminação entre as classes (quanto mais próximo de zero, maior a separação). A estatística $F$ = 7535.47 com $p < 0.001$ rejeita fortemente a hipótese nula de igualdade de centroides, confirmando que a LDA discrimina significativamente entre textos humanos e LLM.
 
 \subsubsection{Regressão Logística}
 
@@ -131,15 +131,15 @@ A Tabela \ref{tab:logit_validation} apresenta as medidas de validação do model
 \hline
 \textbf{Medida} & \textbf{Valor} & \textbf{Interpretação} \\
 \hline
-Razão de verossimilhança ($G$) & [VALOR] & $p < 0.001$ \\
-Hosmer-Lemeshow ($H$) & [VALOR] & $p = [VALOR]$ \\
-Deviance & [VALOR] & - \\
-Pseudo-$R^2$ (McFadden) & [VALOR] & Excelente ajuste \\
+Razão de verossimilhança ($G$) & 18765.15 & $p < 0.001$ \\
+Hosmer-Lemeshow ($H$) & 133.19 & $p < 0.0001$ \\
+Deviance & 8960.74 & - \\
+Pseudo-$R^2$ (McFadden) & 0.6768 & Excelente ajuste \\
 \hline
 \end{tabular}
 \end{table}
 
-O teste de razão de verossimilhança ($G$ = [VALOR], $p < 0.001$) indica que o modelo completo é significativamente melhor que o modelo nulo. O teste de Hosmer-Lemeshow ($H$ = [VALOR], $p$ = [VALOR]) [não rejeita / rejeita] a hipótese de bom ajuste. O pseudo-$R^2$ de McFadden = [VALOR] indica [interpretação].
+O teste de razão de verossimilhança ($G$ = 18765.15, $p < 0.001$) indica que o modelo completo é significativamente melhor que o modelo nulo. O teste de Hosmer-Lemeshow ($H$ = 133.19, $p < 0.0001$) rejeita a hipótese de ajuste perfeito, sugerindo pequenas discrepâncias entre frequências observadas e esperadas, embora o modelo mantenha excelente capacidade preditiva. O pseudo-$R^2$ de McFadden = 0.6768 indica ajuste excelente (valores acima de 0.4 são considerados excelentes em regressão logística).
 
 As Figuras~\ref{fig:roc} e~\ref{fig:pr} apresentam as curvas ROC e Precisão--Revocação, respectivamente, agregadas através das 5 partições. As bandas de confiança ($\pm 1$ desvio padrão) são estreitas, refletindo a consistência dos resultados.
 
