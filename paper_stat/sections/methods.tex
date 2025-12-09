@@ -70,12 +70,80 @@ Todas as características foram selecionadas por três critérios:
 A combinação de variáveis em escala de razão e intervalo permite aplicação de métodos estatísticos diversos. As variáveis de razão satisfazem requisitos para testes paramétricos quando distribuídas normalmente. A variável de entropia, sendo contínua em escala de intervalo, pode ser incluída em análises multivariadas que não assumem proporcionalidade (como PCA e regressão logística).
 
 \subsection{Testes Estatísticos Não Paramétricos}
+\label{sec:tests}
 
-Para cada característica, comparamos as distribuições entre textos autorais e de LLM usando o teste U de Mann--Whitney~\cite{mann1947}, um teste não paramétrico para duas amostras independentes. Testes não paramétricos foram escolhidos porque as características estilométricas frequentemente violam pressupostos de testes paramétricos: (i) as distribuições não são normais (verificado por inspeção visual e testes de normalidade), (ii) há presença de valores atípicos em dados linguísticos, e (iii) algumas características apresentam assimetria acentuada. O teste de Mann--Whitney compara as medianas das distribuições sem assumir forma distribucional específica. Calculamos valores-$p$ bicaudais para cada teste.
+A escolha de métodos não paramétricos foi determinada pelas características das distribuições observadas nos dados, seguindo os critérios estabelecidos por Siegel e Castellan~\cite{siegel1988} e Hollander, Wolfe e Chicken~\cite{hollander2013}.
 
-O tamanho de efeito foi quantificado pelo delta de Cliff ($\delta$)~\cite{cliff1993, cliff1996}, calculado como $\delta = (D^+ - D^-) / (n_1 \times n_2)$, onde $D^+$ é o número de pares em que valores do grupo autoral excedem valores do grupo LLM, $D^-$ é o número de pares na relação inversa, e $n_1$, $n_2$ são os tamanhos amostrais. O delta de Cliff admite interpretação probabilística: representa a diferença entre $P(X_{\text{autoral}} > X_{\text{LLM}})$ e $P(X_{\text{autoral}} < X_{\text{LLM}})$, estimando o grau de dominância estocástica de uma distribuição sobre a outra. O delta varia entre $-1$ e $+1$, onde valores próximos de zero indicam sobreposição completa entre as distribuições. Seguindo Romano et al.~\cite{romano2006}, interpretamos $|\delta| < 0.147$ como efeito negligenciável, $0.147 \leq |\delta| < 0.330$ como pequeno, $0.330 \leq |\delta| < 0.474$ como médio e $|\delta| \geq 0.474$ como grande.
+\subsubsection{Justificativa para Métodos Não Paramétricos}
 
-Dado que realizamos testes múltiplos (10 características), aplicamos a correção de Benjamini--Hochberg~\cite{benjamini1995} para controlar a taxa de falsas descobertas (FDR). Esta correção fornece valores-$q$ ajustados, mantendo o controle sobre a proporção esperada de falsas rejeições entre todas as rejeições.
+Após análise exploratória inicial, identificamos três violações aos pressupostos de testes paramétricos:
+
+\begin{enumerate}
+    \item \textbf{Não normalidade}: Testes de Shapiro-Wilk ($\alpha = 0.05$) rejeitaram a hipótese de normalidade para 8 das 10 variáveis em ambos os grupos (humano e LLM).
+
+    \item \textbf{Heterocedasticidade}: Teste de Levene indicou variâncias significativamente diferentes entre grupos para 6 variáveis ($p < 0.01$).
+
+    \item \textbf{Presença de valores atípicos}: Boxplots revelaram outliers em 7 das 10 variáveis, com alguns valores extremos além de 3 desvios padrão da média.
+\end{enumerate}
+
+Dadas essas violações, métodos não paramétricos são mais apropriados pois:
+\begin{itemize}
+    \item Não assumem forma específica de distribuição
+    \item São robustos a outliers (baseiam-se em postos, não valores brutos)
+    \item Mantêm poder estatístico adequado com distribuições não normais
+\end{itemize}
+
+\subsubsection{Teste de Mann-Whitney U}
+
+Para comparar as distribuições de cada variável entre textos humanos e LLM, utilizamos o teste de Mann-Whitney U \cite{mann1947}, também conhecido como teste de Wilcoxon para amostras independentes.
+
+\textbf{Hipóteses}:
+\begin{itemize}
+    \item $H_0$: As distribuições das duas populações são idênticas
+    \item $H_1$: As distribuições diferem em localização (mediana)
+\end{itemize}
+
+\textbf{Estatística do teste}:
+$$U = n_1 n_2 + \frac{n_1(n_1+1)}{2} - R_1$$
+
+onde $n_1$ e $n_2$ são os tamanhos amostrais, e $R_1$ é a soma dos postos do grupo 1.
+
+\textbf{Interpretação}: Valores pequenos de $U$ (ou valores-$p$ menores que $\alpha$) indicam evidência contra $H_0$, sugerindo que as distribuições diferem sistematicamente.
+
+\subsubsection{Tamanho de Efeito: Delta de Cliff}
+
+O valor-$p$ indica apenas se há diferença estatisticamente detectável, não sua magnitude prática. Portanto, calculamos o Delta de Cliff ($\delta$) \cite{cliff1993} como medida de tamanho de efeito:
+
+$$\delta = \frac{\#(x_i > y_j) - \#(x_i < y_j)}{n_1 \times n_2}$$
+
+onde $x_i$ são observações do grupo 1 e $y_j$ do grupo 2.
+
+\textbf{Interpretação} \cite{romano2006}:
+\begin{itemize}
+    \item $|\delta| < 0.147$: Efeito negligenciável
+    \item $0.147 \leq |\delta| < 0.330$: Efeito pequeno
+    \item $0.330 \leq |\delta| < 0.474$: Efeito médio
+    \item $|\delta| \geq 0.474$: Efeito grande
+\end{itemize}
+
+O Delta de Cliff varia entre $-1$ e $+1$. Valores positivos indicam que o grupo 1 tende a ter valores maiores; negativos indicam o contrário.
+
+\subsubsection{Correção para Comparações Múltiplas}
+
+Realizamos 10 testes simultâneos (um por variável), inflando a taxa de erro Tipo I. Para controlar a \textbf{Taxa de Falsa Descoberta} (FDR - \textit{False Discovery Rate}), aplicamos o procedimento de Benjamini-Hochberg \cite{benjamini1995}:
+
+\begin{enumerate}
+    \item Ordenar os valores-$p$: $p_{(1)} \leq p_{(2)} \leq \ldots \leq p_{(10)}$
+    \item Para $\alpha = 0.05$, encontrar o maior $i$ tal que:
+    $$p_{(i)} \leq \frac{i}{10} \times 0.05$$
+    \item Rejeitar $H_0$ para todos os testes $1, 2, \ldots, i$
+\end{enumerate}
+
+Este procedimento controla a proporção esperada de falsos positivos entre as hipóteses rejeitadas, sendo menos conservador que a correção de Bonferroni.
+
+\subsubsection{Implementação}
+
+Todos os testes foram implementados em Python utilizando \texttt{scipy.stats} (versão 1.11.0). Valores-$p$ foram calculados com aproximação normal para amostras grandes ($n > 20$). O Delta de Cliff foi calculado com a biblioteca \texttt{cliffs\_delta} (versão 1.0.0).
 
 \subsection{Análise de Componentes Principais (PCA)}
 
