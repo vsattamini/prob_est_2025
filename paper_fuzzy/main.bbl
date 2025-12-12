@@ -1,62 +1,824 @@
-\providecommand{\abntreprintinfo}[1]{%
- \citeonline{#1}}
-\setlength{\labelsep}{0pt}\begin{thebibliography}{}
-\providecommand{\abntrefinfo}[3]{}
-\providecommand{\abntbstabout}[1]{}
-\abntbstabout{v-1.9.7 }
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
 
-\bibitem[Herbold et al. 2023]{stylometric_llm_detection}
-\abntrefinfo{Herbold et al.}{HERBOLD et al.}{2023}
-{HERBOLD, S. et al. A large-scale comparison of human-written versus
-  chatgpt-generated essays.
-\textbf{Scientific Data}, v.~10, p. Article 802, 2023.
-Also available as arXiv:2311.15636.}
 
-\bibitem[Klir e Yuan 1995]{klir1995}
-\abntrefinfo{Klir e Yuan}{KLIR; YUAN}{1995}
-{KLIR, G.~J.; YUAN, B. \textbf{Fuzzy Sets and Fuzzy Logic: Theory and
-  Applications}. [S.l.]: Prentice Hall, 1995.
-ISBN 9780131011717.}
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{cochran1977}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=dbe9ae6cc9e5e24a66a2b712affd05de}{%
+           family={Cochran},
+           familyi={C\bibinitperiod},
+           given={William\bibnamedelima G.},
+           giveni={W\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {John Wiley \& Sons}%
+      }
+      \strng{namehash}{dbe9ae6cc9e5e24a66a2b712affd05de}
+      \strng{fullhash}{dbe9ae6cc9e5e24a66a2b712affd05de}
+      \strng{bibnamehash}{dbe9ae6cc9e5e24a66a2b712affd05de}
+      \strng{authorbibnamehash}{dbe9ae6cc9e5e24a66a2b712affd05de}
+      \strng{authornamehash}{dbe9ae6cc9e5e24a66a2b712affd05de}
+      \strng{authorfullhash}{dbe9ae6cc9e5e24a66a2b712affd05de}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3rd}
+      \field{note}{Classic reference on stratified sampling methodology}
+      \field{title}{Sampling Techniques}
+      \field{year}{1977}
+    \endentry
+    \entry{fawcett2006}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=9c15aa0b2a7683cefeaa12c991d0b1c2}{%
+           family={Fawcett},
+           familyi={F\bibinitperiod},
+           given={Tom},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9c15aa0b2a7683cefeaa12c991d0b1c2}
+      \strng{fullhash}{9c15aa0b2a7683cefeaa12c991d0b1c2}
+      \strng{bibnamehash}{9c15aa0b2a7683cefeaa12c991d0b1c2}
+      \strng{authorbibnamehash}{9c15aa0b2a7683cefeaa12c991d0b1c2}
+      \strng{authornamehash}{9c15aa0b2a7683cefeaa12c991d0b1c2}
+      \strng{authorfullhash}{9c15aa0b2a7683cefeaa12c991d0b1c2}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Pattern Recognition Letters}
+      \field{title}{An introduction to ROC analysis}
+      \field{volume}{27}
+      \field{year}{2006}
+      \field{pages}{861\bibrangedash 874}
+      \range{pages}{14}
+    \endentry
+    \entry{feldman2007}{book}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=46ff4917bf210d9d64ff78c0c9042df0}{%
+           family={Feldman},
+           familyi={F\bibinitperiod},
+           given={Ronen},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=676c5b6aaae84ad8288c7d2379fb8107}{%
+           family={Sanger},
+           familyi={S\bibinitperiod},
+           given={James},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{c4d13d6907999c9ce84e5daff6a1a3e8}
+      \strng{fullhash}{c4d13d6907999c9ce84e5daff6a1a3e8}
+      \strng{bibnamehash}{c4d13d6907999c9ce84e5daff6a1a3e8}
+      \strng{authorbibnamehash}{c4d13d6907999c9ce84e5daff6a1a3e8}
+      \strng{authornamehash}{c4d13d6907999c9ce84e5daff6a1a3e8}
+      \strng{authorfullhash}{c4d13d6907999c9ce84e5daff6a1a3e8}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The Text Mining Handbook: Advanced Approaches in Analyzing Unstructured Data}
+      \field{year}{2007}
+    \endentry
+    \entry{stylometric_llm_detection}{article}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=953a6601363990931840a382c17705a1}{%
+           family={Herbold},
+           familyi={H\bibinitperiod},
+           given={Stephan},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=868e7d6d29419a7bb43eb1c5591cdef1}{%
+           family={Hautli-Janisz},
+           familyi={H\bibinithyphendelim J\bibinitperiod},
+           given={Annette},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d174c654181333f1af806dc43aaa9f3b}{%
+           family={Heuer},
+           familyi={H\bibinitperiod},
+           given={Ute},
+           giveni={U\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bcac8f96104eeab4a6a2df7745f83ceb}{%
+           family={Kikteva},
+           familyi={K\bibinitperiod},
+           given={Zlata},
+           giveni={Z\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a5c02b49c5b276279471aa7964b8afac}{%
+           family={Trautsch},
+           familyi={T\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{2c882ef4432733e18674464dc40bddbf}
+      \strng{fullhash}{3c7316a9bd1ed866690a4dd5d99dfb3e}
+      \strng{bibnamehash}{2c882ef4432733e18674464dc40bddbf}
+      \strng{authorbibnamehash}{2c882ef4432733e18674464dc40bddbf}
+      \strng{authornamehash}{2c882ef4432733e18674464dc40bddbf}
+      \strng{authorfullhash}{3c7316a9bd1ed866690a4dd5d99dfb3e}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Scientific Data}
+      \field{note}{Also available as arXiv:2311.15636}
+      \field{title}{A Large-Scale Comparison of Human-Written Versus ChatGPT-Generated Essays}
+      \field{volume}{10}
+      \field{year}{2023}
+      \field{pages}{Article 802}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1038/s41597-023-02766-z
+      \endverb
+    \endentry
+    \entry{klir1995}{book}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=92616e3af52af9375dbc0e60c33a63cf}{%
+           family={Klir},
+           familyi={K\bibinitperiod},
+           given={George\bibnamedelima J.},
+           giveni={G\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1ce4eb84b8441cb4f47e328910e194f7}{%
+           family={Yuan},
+           familyi={Y\bibinitperiod},
+           given={Bo},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Prentice Hall}%
+      }
+      \strng{namehash}{3c895c2074a8af9c07823f48ffec8c6c}
+      \strng{fullhash}{3c895c2074a8af9c07823f48ffec8c6c}
+      \strng{bibnamehash}{3c895c2074a8af9c07823f48ffec8c6c}
+      \strng{authorbibnamehash}{3c895c2074a8af9c07823f48ffec8c6c}
+      \strng{authornamehash}{3c895c2074a8af9c07823f48ffec8c6c}
+      \strng{authorfullhash}{3c895c2074a8af9c07823f48ffec8c6c}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9780131011717}
+      \field{title}{Fuzzy Sets and Fuzzy Logic: Theory and Applications}
+      \field{year}{1995}
+    \endentry
+    \entry{li2016diversity}{inproceedings}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=9e784630a0c25d3ed602dfe506235c30}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Jiwei},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fda9fdf6ebb4aa0e4f37826ef02391c3}{%
+           family={Galley},
+           familyi={G\bibinitperiod},
+           given={Michel},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=15e87e276e6019ac1304793ab77184be}{%
+           family={Brockett},
+           familyi={B\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=159bca5607e3797666654a2e3022978a}{%
+           family={Gao},
+           familyi={G\bibinitperiod},
+           given={Jianfeng},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3b3db39806e6059146b4d991272b0a78}{%
+           family={Dolan},
+           familyi={D\bibinitperiod},
+           given={Bill},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computational Linguistics}%
+      }
+      \strng{namehash}{deaecf55c405f8de9e78713a6782909c}
+      \strng{fullhash}{ebb34a0115f9aa341fe4537a56723b18}
+      \strng{bibnamehash}{deaecf55c405f8de9e78713a6782909c}
+      \strng{authorbibnamehash}{deaecf55c405f8de9e78713a6782909c}
+      \strng{authornamehash}{deaecf55c405f8de9e78713a6782909c}
+      \strng{authorfullhash}{ebb34a0115f9aa341fe4537a56723b18}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 2016 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies}
+      \field{note}{Introduces Distinct-n metrics to measure lexical diversity and penalize repetitiveness}
+      \field{series}{NAACL-HLT 2016}
+      \field{title}{A Diversity-Promoting Objective Function for Neural Conversation Models}
+      \field{year}{2016}
+      \field{pages}{110\bibrangedash 119}
+      \range{pages}{10}
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1510.03055
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1510.03055
+      \endverb
+    \endentry
+    \entry{liu2024}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{7}{}{%
+        {{un=0,uniquepart=base,hash=d5cac9f15b87a90bd8acee89347fbad2}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Mingxuan},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fbefb123f0fb2b74e98ede7afb2aa058}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Xiaoyu},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=64c83b6b72e8de9f5aeeaaa8c42b7b90}{%
+           family={Shi},
+           familyi={S\bibinitperiod},
+           given={Guoying},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d652f75fdd7af0f0d0d62e52b3188ae5}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Liting},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0664a31d75ae88d142a0e634df0ead4d}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Han},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f2a0a4f5a03bef37fc5552061319cb71}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Jun},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=65027af5f4f54f2e6c7bb140253872e2}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Di},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{2f456816d65886e4cfe42987bf87d215}
+      \strng{fullhash}{c2310cf1203932f6a6cb3159396444a6}
+      \strng{bibnamehash}{2f456816d65886e4cfe42987bf87d215}
+      \strng{authorbibnamehash}{2f456816d65886e4cfe42987bf87d215}
+      \strng{authornamehash}{2f456816d65886e4cfe42987bf87d215}
+      \strng{authorfullhash}{c2310cf1203932f6a6cb3159396444a6}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Applied Soft Computing}
+      \field{title}{The fusion of fuzzy theories and natural language processing: A state-of-the-art survey}
+      \field{volume}{162}
+      \field{year}{2024}
+      \field{pages}{111789}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.asoc.2024.111789
+      \endverb
+    \endentry
+    \entry{scikit-learn}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=bab4e5caee2d67831e464ce575022b37}{%
+           family={Pedregosa},
+           familyi={P\bibinitperiod},
+           given={Fabian},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9ec95d747bac3417f92265a9a44f8bb4}
+      \strng{fullhash}{9ec95d747bac3417f92265a9a44f8bb4}
+      \strng{bibnamehash}{9ec95d747bac3417f92265a9a44f8bb4}
+      \strng{authorbibnamehash}{9ec95d747bac3417f92265a9a44f8bb4}
+      \strng{authornamehash}{9ec95d747bac3417f92265a9a44f8bb4}
+      \strng{authorfullhash}{9ec95d747bac3417f92265a9a44f8bb4}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{JMLR}
+      \field{title}{Scikit-learn: Machine learning in Python}
+      \field{volume}{12}
+      \field{year}{2011}
+      \field{pages}{2825\bibrangedash 2830}
+      \range{pages}{6}
+    \endentry
+    \entry{pedrycz1994}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a5f1d34ba9f88d0d857faf318cd52c84}{%
+           family={Pedrycz},
+           familyi={P\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a5f1d34ba9f88d0d857faf318cd52c84}
+      \strng{fullhash}{a5f1d34ba9f88d0d857faf318cd52c84}
+      \strng{bibnamehash}{a5f1d34ba9f88d0d857faf318cd52c84}
+      \strng{authorbibnamehash}{a5f1d34ba9f88d0d857faf318cd52c84}
+      \strng{authornamehash}{a5f1d34ba9f88d0d857faf318cd52c84}
+      \strng{authorfullhash}{a5f1d34ba9f88d0d857faf318cd52c84}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Fuzzy Sets and Systems}
+      \field{title}{Why triangular membership functions?}
+      \field{volume}{64}
+      \field{year}{1994}
+      \field{pages}{21\bibrangedash 30}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1016/0165-0114(94)90003-5
+      \endverb
+    \endentry
+    \entry{siddharth2024burstiness}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=641e95deb06d7e0ad45f2f9acd274f17}{%
+           family={Siddharth},
+           familyi={S\bibinitperiod},
+           given={Jhanwar},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{641e95deb06d7e0ad45f2f9acd274f17}
+      \strng{fullhash}{641e95deb06d7e0ad45f2f9acd274f17}
+      \strng{bibnamehash}{641e95deb06d7e0ad45f2f9acd274f17}
+      \strng{authorbibnamehash}{641e95deb06d7e0ad45f2f9acd274f17}
+      \strng{authornamehash}{641e95deb06d7e0ad45f2f9acd274f17}
+      \strng{authorfullhash}{641e95deb06d7e0ad45f2f9acd274f17}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Medium}
+      \field{note}{Practical implementation of sentence-level burstiness using coefficient of variation for AI detection}
+      \field{title}{Analysing Perplexity and Burstiness in {AI} vs. Human Text}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://medium.com/@jhanwarsid/human-contentanalysing-perplexity-and-burstiness-in-ai-vs-human-text-df70fdcc5525
+      \endverb
+      \verb{url}
+      \verb https://medium.com/@jhanwarsid/human-contentanalysing-perplexity-and-burstiness-in-ai-vs-human-text-df70fdcc5525
+      \endverb
+    \endentry
+    \entry{solaiman2019release}{article}{}
+      \name{author}{15}{}{%
+        {{un=0,uniquepart=base,hash=eb9c0aa74c2ccf9544e2f1b5102c6b9b}{%
+           family={Solaiman},
+           familyi={S\bibinitperiod},
+           given={Irene},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=491f407436bc852bea5077f37f0d5055}{%
+           family={Brundage},
+           familyi={B\bibinitperiod},
+           given={Miles},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1480c861b1a73e1d1de1b227e985b179}{%
+           family={Clark},
+           familyi={C\bibinitperiod},
+           given={Jack},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1e84eff933be9f4887bf369cf181bf12}{%
+           family={Askell},
+           familyi={A\bibinitperiod},
+           given={Amanda},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=787b9715a98ea66a8d5e6bae042ae0b9}{%
+           family={Herbert-Voss},
+           familyi={H\bibinithyphendelim V\bibinitperiod},
+           given={Ariel},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=154c21dba0a601ad2f9ec03612c6d5e0}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Jeff},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a812c46caad94fc8701be37871f303ba}{%
+           family={Radford},
+           familyi={R\bibinitperiod},
+           given={Alec},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c3a5cc5e520e0d1a9f8bbf377c74cd27}{%
+           family={Krueger},
+           familyi={K\bibinitperiod},
+           given={Gretchen},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=37a96525bc70870f8509160f7eccf4b7}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Jong\bibnamedelima Wook},
+           giveni={J\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c2d45cc854a7a2d368843e3428a1de5c}{%
+           family={Kreps},
+           familyi={K\bibinitperiod},
+           given={Sarah},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2f0151b5a25f6df2a4e769f56d5fa8aa}{%
+           family={McCain},
+           familyi={M\bibinitperiod},
+           given={Miles},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c3e5e29eb0337cd5f6137fa5e29168ea}{%
+           family={Newhouse},
+           familyi={N\bibinitperiod},
+           given={Alex},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f85fe9f2fea128e3ed4359c150b498d5}{%
+           family={Blazakis},
+           familyi={B\bibinitperiod},
+           given={Jason},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=01579083af13e4943ca2e09b720475c8}{%
+           family={McGuffie},
+           familyi={M\bibinitperiod},
+           given={Kris},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=012bbdf668088618240d500f6f1762bf}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Jasmine},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{43dcfca19482403b425640825382324b}
+      \strng{fullhash}{b7cbe94052dabbb71d383daa915750c1}
+      \strng{bibnamehash}{43dcfca19482403b425640825382324b}
+      \strng{authorbibnamehash}{43dcfca19482403b425640825382324b}
+      \strng{authornamehash}{43dcfca19482403b425640825382324b}
+      \strng{authorfullhash}{b7cbe94052dabbb71d383daa915750c1}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1908.09203}
+      \field{note}{Demonstrates effectiveness of TF-IDF bigram features for GPT-2 text detection}
+      \field{title}{Release Strategies and the Social Impacts of Language Models}
+      \field{year}{2019}
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1908.09203
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1908.09203
+      \endverb
+    \endentry
+    \entry{takagi1985}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=b193a52705230fffa668ea9cf65f9903}{%
+           family={Takagi},
+           familyi={T\bibinitperiod},
+           given={Tomohiro},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=59477af47c8143744934c15fe6ea4d9b}{%
+           family={Sugeno},
+           familyi={S\bibinitperiod},
+           given={Michio},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{10eff5167c1ab3db82185302cf3c3418}
+      \strng{fullhash}{10eff5167c1ab3db82185302cf3c3418}
+      \strng{bibnamehash}{10eff5167c1ab3db82185302cf3c3418}
+      \strng{authorbibnamehash}{10eff5167c1ab3db82185302cf3c3418}
+      \strng{authornamehash}{10eff5167c1ab3db82185302cf3c3418}
+      \strng{authorfullhash}{10eff5167c1ab3db82185302cf3c3418}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Systems, Man, and Cybernetics}
+      \field{number}{1}
+      \field{title}{Fuzzy identification of systems and its applications to modeling and control}
+      \field{volume}{SMC-15}
+      \field{year}{1985}
+      \field{pages}{116\bibrangedash 132}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.1109/TSMC.1985.6313399
+      \endverb
+    \endentry
+    \entry{gptzero2023}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=86fcb76dc2d63de5944cdbd7f204003b}{%
+           family={Tian},
+           familyi={T\bibinitperiod},
+           given={Edward},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{86fcb76dc2d63de5944cdbd7f204003b}
+      \strng{fullhash}{86fcb76dc2d63de5944cdbd7f204003b}
+      \strng{bibnamehash}{86fcb76dc2d63de5944cdbd7f204003b}
+      \strng{authorbibnamehash}{86fcb76dc2d63de5944cdbd7f204003b}
+      \strng{authornamehash}{86fcb76dc2d63de5944cdbd7f204003b}
+      \strng{authorfullhash}{86fcb76dc2d63de5944cdbd7f204003b}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Defines burstiness as measure of writing pattern variation across documents for LLM detection}
+      \field{title}{{GPTZero}: Towards detection of {AI}-generated text using zero-shot and supervised methods}
+      \field{year}{2023}
+      \verb{urlraw}
+      \verb https://gptzero.me
+      \endverb
+      \verb{url}
+      \verb https://gptzero.me
+      \endverb
+    \endentry
+    \entry{vashishtha2023}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=c19f8010f780c17619a8cebbb30ed5f7}{%
+           family={Vashishtha},
+           familyi={V\bibinitperiod},
+           given={Shashank},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9081399f834f9210d0469ba15d5351a0}{%
+           family={Gupta},
+           familyi={G\bibinitperiod},
+           given={Vibhash},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=25cae21dd8719964ced0accf669da534}{%
+           family={Mittal},
+           familyi={M\bibinitperiod},
+           given={Monica},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{53a876c6b5247fde466938bd9588d8bf}
+      \strng{fullhash}{53a876c6b5247fde466938bd9588d8bf}
+      \strng{bibnamehash}{53a876c6b5247fde466938bd9588d8bf}
+      \strng{authorbibnamehash}{53a876c6b5247fde466938bd9588d8bf}
+      \strng{authornamehash}{53a876c6b5247fde466938bd9588d8bf}
+      \strng{authorfullhash}{53a876c6b5247fde466938bd9588d8bf}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{WIREs Data Mining and Knowledge Discovery}
+      \field{number}{6}
+      \field{title}{Sentiment analysis using fuzzy logic: A comprehensive literature review}
+      \field{volume}{13}
+      \field{year}{2023}
+      \field{pages}{e1509}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1002/widm.1509
+      \endverb
+    \endentry
+    \entry{wang1997}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f7f05c6ddc931c6d0c78d8510a49cfd6}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Li-Xin},
+           giveni={L\bibinithyphendelim X\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Prentice Hall}%
+      }
+      \strng{namehash}{f7f05c6ddc931c6d0c78d8510a49cfd6}
+      \strng{fullhash}{f7f05c6ddc931c6d0c78d8510a49cfd6}
+      \strng{bibnamehash}{f7f05c6ddc931c6d0c78d8510a49cfd6}
+      \strng{authorbibnamehash}{f7f05c6ddc931c6d0c78d8510a49cfd6}
+      \strng{authornamehash}{f7f05c6ddc931c6d0c78d8510a49cfd6}
+      \strng{authorfullhash}{f7f05c6ddc931c6d0c78d8510a49cfd6}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{A Course in Fuzzy Systems and Control}
+      \field{year}{1997}
+    \endentry
+    \entry{wang2024fuzzy}{article}{}
+      \name{author}{4}{ul=1}{%
+        {{un=0,uniquepart=base,hash=1cfe4544a8c4ae947225a5f96b2c6803}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Yuanpeng},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3384b07f301104b73ae45a9a1078732e}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Zeshui},
+           giveni={Z\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f69a9eb8e47f8b9d4c4218f795850ae2}{%
+           family={Zhou},
+           familyi={Z\bibinitperiod},
+           given={Yingming},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=58311a07e02d477f22b4646c3681e43e}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Qianxia},
+           giveni={Q\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a8aaa83a1182f29adb66396322fe3f43}
+      \strng{fullhash}{b552fb049a1c85f82aee47f32c69f854}
+      \strng{bibnamehash}{a8aaa83a1182f29adb66396322fe3f43}
+      \strng{authorbibnamehash}{a8aaa83a1182f29adb66396322fe3f43}
+      \strng{authornamehash}{a8aaa83a1182f29adb66396322fe3f43}
+      \strng{authorfullhash}{b552fb049a1c85f82aee47f32c69f854}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Fuzzy Systems}
+      \field{number}{7}
+      \field{title}{Interpretable classifier design by axiomatic fuzzy sets theory and derivative-free optimization}
+      \field{volume}{32}
+      \field{year}{2024}
+      \field{pages}{3857\bibrangedash 3868}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1109/TFUZZ.2024.3377688
+      \endverb
+    \endentry
+    \entry{wilcox2012}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=c60f0f1d9f63f3fe3c0acca3eb3d148e}{%
+           family={Wilcox},
+           familyi={W\bibinitperiod},
+           given={Rand\bibnamedelima R.},
+           giveni={R\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Academic Press}%
+      }
+      \strng{namehash}{c60f0f1d9f63f3fe3c0acca3eb3d148e}
+      \strng{fullhash}{c60f0f1d9f63f3fe3c0acca3eb3d148e}
+      \strng{bibnamehash}{c60f0f1d9f63f3fe3c0acca3eb3d148e}
+      \strng{authorbibnamehash}{c60f0f1d9f63f3fe3c0acca3eb3d148e}
+      \strng{authornamehash}{c60f0f1d9f63f3fe3c0acca3eb3d148e}
+      \strng{authorfullhash}{c60f0f1d9f63f3fe3c0acca3eb3d148e}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3rd}
+      \field{note}{Comprehensive treatment of quantile-based robust statistics}
+      \field{title}{Introduction to Robust Estimation and Hypothesis Testing}
+      \field{year}{2012}
+    \endentry
+    \entry{zadeh1965}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=17336400ed72a54fb197c258a70cea13}{%
+           family={Zadeh},
+           familyi={Z\bibinitperiod},
+           given={Lotfi\bibnamedelima A},
+           giveni={L\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{17336400ed72a54fb197c258a70cea13}
+      \strng{fullhash}{17336400ed72a54fb197c258a70cea13}
+      \strng{bibnamehash}{17336400ed72a54fb197c258a70cea13}
+      \strng{authorbibnamehash}{17336400ed72a54fb197c258a70cea13}
+      \strng{authornamehash}{17336400ed72a54fb197c258a70cea13}
+      \strng{authorfullhash}{17336400ed72a54fb197c258a70cea13}
+      \field{extraname}{1}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Information and Control}
+      \field{number}{3}
+      \field{title}{Fuzzy sets}
+      \field{volume}{8}
+      \field{year}{1965}
+      \field{pages}{338\bibrangedash 353}
+      \range{pages}{16}
+    \endentry
+    \entry{zadeh1975linguistic}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=17336400ed72a54fb197c258a70cea13}{%
+           family={Zadeh},
+           familyi={Z\bibinitperiod},
+           given={Lotfi\bibnamedelima A},
+           giveni={L\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{17336400ed72a54fb197c258a70cea13}
+      \strng{fullhash}{17336400ed72a54fb197c258a70cea13}
+      \strng{bibnamehash}{17336400ed72a54fb197c258a70cea13}
+      \strng{authorbibnamehash}{17336400ed72a54fb197c258a70cea13}
+      \strng{authornamehash}{17336400ed72a54fb197c258a70cea13}
+      \strng{authorfullhash}{17336400ed72a54fb197c258a70cea13}
+      \field{extraname}{2}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Information Sciences}
+      \field{number}{3}
+      \field{title}{The concept of a linguistic variable and its application to approximate reasoning}
+      \field{volume}{8}
+      \field{year}{1975}
+      \field{pages}{199\bibrangedash 249}
+      \range{pages}{51}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
 
-\bibitem[Liu et al. 2024]{liu2024}
-\abntrefinfo{Liu et al.}{LIU et al.}{2024}
-{LIU, M. et al. The fusion of fuzzy theories and natural language processing: A
-  state-of-the-art survey.
-\textbf{Applied Soft Computing}, v.~162, p. 111789, 2024.}
-
-\bibitem[Pedrycz 1994]{pedrycz1994}
-\abntrefinfo{Pedrycz}{PEDRYCZ}{1994}
-{PEDRYCZ, W. Why triangular membership functions?
-\textbf{Fuzzy Sets and Systems}, v.~64, p. 21--30, 1994.}
-
-\bibitem[Takagi e Sugeno 1985]{takagi1985}
-\abntrefinfo{Takagi e Sugeno}{TAKAGI; SUGENO}{1985}
-{TAKAGI, T.; SUGENO, M. Fuzzy identification of systems and its applications to
-  modeling and control.
-\textbf{IEEE Transactions on Systems, Man, and Cybernetics}, SMC-15, n.~1, p.
-  116--132, 1985.}
-
-\bibitem[Vashishtha, Gupta e Mittal 2023]{vashishtha2023}
-\abntrefinfo{Vashishtha, Gupta e Mittal}{VASHISHTHA; GUPTA; MITTAL}{2023}
-{VASHISHTHA, S.; GUPTA, V.; MITTAL, M. Sentiment analysis using fuzzy logic: A
-  comprehensive literature review.
-\textbf{WIREs Data Mining and Knowledge Discovery}, v.~13, n.~6, p. e1509,
-  2023.}
-
-\bibitem[Wang 1997]{wang1997}
-\abntrefinfo{Wang}{WANG}{1997}
-{WANG, L.-X. \textbf{A Course in Fuzzy Systems and Control}. [S.l.]: Prentice
-  Hall, 1997.}
-
-\bibitem[Wang et al. 2024]{wang2024fuzzy}
-\abntrefinfo{Wang et al.}{WANG et al.}{2024}
-{WANG, Y. et al. Interpretable classifier design by axiomatic fuzzy sets theory
-  and derivative-free optimization.
-\textbf{IEEE Transactions on Fuzzy Systems}, v.~32, n.~7, p. 3857--3868, 2024.}
-
-\bibitem[Zadeh 1965]{zadeh1965}
-\abntrefinfo{Zadeh}{ZADEH}{1965}
-{ZADEH, L.~A. Fuzzy sets.
-\textbf{Information and Control}, v.~8, n.~3, p. 338--353, 1965.}
-
-\end{thebibliography}

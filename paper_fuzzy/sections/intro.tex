@@ -82,7 +82,7 @@ Neste trabalho, adotou-se o modelo \textbf{Takagi-Sugeno de ordem zero}, no qual
 A escolha da lógica fuzzy para a detecção de textos gerados por LLMs fundamenta-se em três pilares:
 
 \begin{enumerate}
-    \item \textbf{Interpretabilidade}: ao contrário de modelos de caixa-preta (redes neurais, gradient boosting), os graus de pertinência e as regras fuzzy são inspecionáveis, permitindo auditoria e compreensão do processo decisório.
+    \item \textbf{Interpretabilidade}: ao contrário de modelos de caixa-preta (redes neurais, \textit{boosting} de gradiente), os graus de pertinência e as regras fuzzy são inspecionáveis, permitindo auditoria e compreensão do processo decisório.
     \item \textbf{Robustez}: o uso de quantis para determinar os parâmetros das funções de pertinência torna o modelo resistente a valores extremos (\textit{outliers}), resultando em variância excepcionalmente baixa ($\pm 0.04\%$).
     \item \textbf{Modelagem de Incerteza}: características estilométricas apresentam gradualidade natural (um texto pode ser ``moderadamente variável lexicalmente''), que a lógica fuzzy captura de forma direta, sem necessidade de discretização arbitrária.
 \end{enumerate}

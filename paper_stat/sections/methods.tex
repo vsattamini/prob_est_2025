@@ -60,19 +60,19 @@ As nove características a seguir são mensuradas em \textbf{escala de razão}, 
 
     \item \textbf{Desvio padrão do comprimento de frase} (\texttt{sent\_std}): Medida de dispersão absoluta do comprimento de frases. Unidade: palavras. Quantifica a variabilidade no comprimento das frases.
 
-    \item \textbf{Coeficiente de variação do comprimento de frase} (\texttt{sent\_cv}): Razão entre desvio padrão e média ($CV = \sigma/\mu$). Estatística adimensional que normaliza a variabilidade pela tendência central, permitindo comparação entre distribuições com escalas distintas \cite{madsen2005}.
+    \item \textbf{Coeficiente de variação do comprimento de frase} (\texttt{sent\_cv}): Razão entre desvio padrão e média ($CV = \sigma/\mu$). Estatística adimensional que normaliza a variabilidade pela tendência central, permitindo comparação entre distribuições com escalas distintas. Esta métrica, também denominada \textit{burstiness} normalizado no contexto de detecção de textos gerados por LLMs, captura a variação nas estruturas das sentenças -- textos humanos tendem a alternar entre frases longas e curtas, enquanto LLMs produzem comprimentos mais uniformes \cite{gptzero2023,siddharth2024burstiness,chakraborty2023ct2}.
 
     \item \textbf{Riqueza lexical - C de Herdan} (\texttt{herdan\_c}): Medida de diversidade vocabular calculada como $C = \log(V) / \log(N)$, onde $V$ é o número de tipos (palavras distintas) e $N$ é o número de tokens (total de palavras) \cite{herdan1960}. Varia entre 0 e 1, onde valores próximos a 1 indicam maior diversidade lexical.
 
-    \item \textbf{Proporção de pontuação} (\texttt{punct\_ratio}): Razão entre número de sinais de pontuação e total de caracteres. Adimensional, varia entre 0 e 1.
+    \item \textbf{Relação tipo-token} (\texttt{ttr}): Razão entre número de tipos (palavras distintas) e tokens (total de palavras), calculada como $TTR = V/N$. Adimensional, varia entre 0 e 1. Medida clássica de riqueza lexical -- valores altos indicam maior diversidade vocabular.
 
-    \item \textbf{Proporção de dígitos} (\texttt{digit\_ratio}): Razão entre dígitos numéricos e total de caracteres. Adimensional, varia entre 0 e 1.
+    \item \textbf{Proporção de hapax legomena} (\texttt{hapax\_prop}): Proporção de palavras que ocorrem exatamente uma vez no texto. Adimensional, varia entre 0 e 1. Hapax legomena são palavras raras que indicam riqueza vocabular e especificidade do texto.
 
-    \item \textbf{Proporção de letras maiúsculas} (\texttt{upper\_ratio}): Razão entre letras maiúsculas e total de letras. Adimensional, varia entre 0 e 1.
+    \item \textbf{Proporção de palavras funcionais} (\texttt{func\_word\_ratio}): Razão entre palavras funcionais (artigos, preposições, conjunções, pronomes) e total de palavras \cite{stamatatos2009}. Adimensional, varia entre 0 e 1. Palavras funcionais são frequentes e pouco conscientes, revelando estilo autoral.
 
-    \item \textbf{Proporção de palavras funcionais} (\texttt{func\_ratio}): Razão entre palavras funcionais (artigos, preposições, conjunções, pronomes) e total de palavras \cite{stamatatos2009}. Adimensional, varia entre 0 e 1. Palavras funcionais são frequentes e pouco conscientes, revelando estilo autoral.
+    \item \textbf{Proporção de primeira pessoa} (\texttt{first\_person\_ratio}): Razão entre pronomes de primeira pessoa (eu, me, meu, nos, nosso, etc.) e total de palavras. Adimensional, varia entre 0 e 1. Indica subjetividade e perspectiva pessoal do texto.
 
-    \item \textbf{Comprimento médio de palavra} (\texttt{word\_len\_mean}): Média do número de caracteres por palavra. Unidade: caracteres/palavra.
+    \item \textbf{Taxa de repetição de bigramas} (\texttt{bigram\_repeat\_ratio}): Proporção de tipos de bigramas (pares consecutivos de palavras) que ocorrem mais de uma vez, calculada como (número de tipos de bigramas com contagem > 1) / (total de tipos distintos de bigramas). Adimensional, varia entre 0 e 1. Valores altos indicam maior repetição de padrões frasais. Esta métrica captura redundância local, relacionada ao uso de características de bigramas para detecção de textos gerados por modelos de linguagem \cite{solaiman2019release,li2016diversity}.
 \end{enumerate}
 
 \subsubsection{Variável em Escala de Intervalo}
@@ -117,13 +117,13 @@ Após análise exploratória inicial, identificamos três violações aos pressu
 
     \item \textbf{Heterocedasticidade}: Teste de Levene indicou variâncias significativamente diferentes entre grupos para 6 variáveis ($p < 0.01$).
 
-    \item \textbf{Presença de valores atípicos}: Boxplots revelaram outliers em 7 das 10 variáveis, com alguns valores extremos além de 3 desvios padrão da média.
+    \item \textbf{Presença de valores atípicos}: Boxplots revelaram valores atípicos (\textit{outliers}) em 7 das 10 variáveis, com alguns valores extremos além de 3 desvios padrão da média.
 \end{enumerate}
 
 Dadas essas violações, métodos não paramétricos são mais apropriados pois:
 \begin{itemize}
     \item Não assumem forma específica de distribuição
-    \item São robustos a outliers (baseiam-se em postos, não valores brutos)
+    \item São robustos a valores atípicos (\textit{outliers}) (baseiam-se em postos, não valores brutos)
     \item Mantêm poder estatístico adequado com distribuições não normais
 \end{itemize}
 

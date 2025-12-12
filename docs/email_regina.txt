@@ -1,0 +1,56 @@
+Assunto: Correções nos Artigos Conforme Feedback da Reunião
+
+Prezada Professora Regina,
+
+Espero que esteja bem. Venho por meio deste e-mail informar que realizei as correções nos artigos (estatístico e fuzzy) conforme os pontos que a senhora levantou em nossa reunião. Abaixo, detalho as principais alterações implementadas:
+
+**1. Validação Estatística dos Modelos (ANOVAs)**
+Adicionei as validações estatísticas que estavam faltando:
+- Para a Análise Discriminante Linear: teste de Lambda de Wilks (Λ = 0.4911, F = 7535.47, p < 0.001)
+- Para a Regressão Logística: teste de razão de verossimilhança (G = 18765.15), teste de Hosmer-Lemeshow, deviance e Pseudo-R² de McFadden (0.6768)
+- Implementação completa em código (src/compute_anova_validation.py) e tabelas nos artigos
+
+**2. Terminologia Estatística em Português**
+Substituí todos os anglicismos por terminologia estatística apropriada em português:
+- "corpus" → "conjunto de dados textuais"
+- "features" → "características" ou "variáveis"
+- "burstiness" → "coeficiente de variação"
+- "outliers" → "valores atípicos"
+- E demais termos ao longo de todo o texto
+
+**3. Explicação de Mineração de Texto**
+Adicionei uma subseção explicando o que é mineração de texto, suas etapas (coleta, pré-processamento, extração de características, análise) e como transforma documentos em vetores de variáveis quantitativas para análise estatística (com referência a Feldman & Sanger, 2007).
+
+**4. Escalas de Medida das Variáveis**
+Especifiquei claramente a escala de medida de cada variável:
+- 9 características em escala de razão (com zero absoluto e razões interpretáveis)
+- 1 característica em escala de intervalo (entropia de caracteres)
+- Justificativa estatística para cada escala
+
+**5. Justificativa para Métodos Não Paramétricos**
+Explicitei os três motivos para uso de testes não paramétricos:
+- Não normalidade (Shapiro-Wilk rejeitou H₀ para 8 de 10 variáveis)
+- Heterocedasticidade (teste de Levene, p < 0.01 para 6 variáveis)
+- Presença de valores atípicos (7 de 10 variáveis)
+- Clarificação: as variáveis são contínuas, mas não-normais
+
+**6. Entropia como Medida Estatística**
+Reformulei a apresentação da entropia de caracteres, explicando que embora originalmente da teoria da informação, funciona estatisticamente como medida de dispersão análoga ao desvio padrão, aplicada a distribuições de frequência categórica, sendo mensurada em escala de intervalo.
+
+**7. Método de Amostragem Estratificada**
+Detalhei o procedimento de amostragem aleatória estratificada proporcional:
+- Fórmula: n_h = n × (N_h / N)
+- Estratificação por fonte de origem dos textos
+- Vantagens estatísticas (representatividade, redução de variância)
+
+**8. Justificativa para Múltiplos Métodos**
+Esclareci que a comparação entre LDA, Regressão Logística e classificador Fuzzy serve para validação cruzada dos resultados, sendo que cada método possui pressupostos diferentes (generativo vs. discriminativo vs. baseado em regras), e os resultados convergem, validando os achados.
+
+Todos os artigos compilam sem erros e as alterações foram documentadas no arquivo REGINA_ADAPTACOES.md. Os guias pedagógicos também foram revisados para refletir essas correções.
+
+Gostaria de solicitar sua revisão dos artigos quando for conveniente para a senhora. Estou à disposição para realizar quaisquer ajustes adicionais que se façam necessários.
+
+Agradeço imensamente pelo feedback detalhado e pela paciência em me ensinar a "falar statistiquês" adequadamente.
+
+Atenciosamente,
+Vitor Lofgren

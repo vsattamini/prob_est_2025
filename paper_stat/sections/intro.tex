@@ -3,7 +3,7 @@
 \noindent
 A emergência de modelos de linguagem de grande porte (LLMs) criou preocupações quanto à detecção de conteúdo gerado automaticamente. A detecção de autoria computacional tem raízes históricas sólidas, iniciando com o trabalho seminal de Mosteller e Wallace~\cite{mosteller1964} sobre os artigos Federalistas e posteriormente formalizada por Burrows~\cite{burrows2002} com a medida Delta para diferenciação estilística. Trabalhos recentes demonstram que essas técnicas estilométricas clássicas permanecem eficazes para distinguir textos autorais de textos gerados por LLMs~\cite{stamatatos2009,huang2024}.
 
-Estudos em múltiplos idiomas confirmam a viabilidade da abordagem estilométrica: Herbold et al.~\cite{stylometric_llm_detection} reportaram 81--98\% de acurácia usando 31 características e Random Forest; Zaitsu e Jin~\cite{zaitsu2023} alcançaram 100\% de precisão em textos japoneses; Przystalski et al.~\cite{przystalski2025} demonstraram que estilometria reconhece LLMs mesmo em pequenas amostras (0,87--0,98 de acurácia); e Berriche e Larabi-Marie-Sainte~\cite{berriche2024} atingiram 100\% usando 33 características estilométricas com XGBoost. Esses resultados evidenciam que características como comprimento médio de frases, relação tipo-token, entropia de caracteres~\cite{shannon1948}, proporção de palavras funcionais~\cite{stamatatos2009} e burstiness~\cite{madsen2005} contêm sinais fortes sobre a origem do texto.
+Estudos em múltiplos idiomas confirmam a viabilidade da abordagem estilométrica: Herbold et al.~\cite{stylometric_llm_detection} reportaram 81--98\% de acurácia usando 31 características e floresta aleatória; Zaitsu e Jin~\cite{zaitsu2023} alcançaram 100\% de precisão em textos japoneses; Przystalski et al.~\cite{przystalski2025} demonstraram que estilometria reconhece LLMs mesmo em pequenas amostras (0,87--0,98 de acurácia); e Berriche e Larabi-Marie-Sainte~\cite{berriche2024} atingiram 100\% usando 33 características estilométricas com \textit{XGBoost}. Esses resultados evidenciam que características como comprimento médio de frases, relação tipo-token, entropia de caracteres~\cite{shannon1948}, proporção de palavras funcionais~\cite{stamatatos2009} e burstiness (variação estrutural)~\cite{gptzero2023,chakraborty2023ct2} contêm sinais fortes sobre a origem do texto.
 
 Este estudo contribui para a literatura de detecção de LLMs ao fornecer uma primeira análise estilométrica para detecção de textos gerados por LLMs em português do Brasil. Não foi encontrado aplicação de análise estilométrica a textos de LLM em português. Utilizou-se um conjunto de dados balanceado com mais de 1,2 milhões de amostras de múltiplas fontes (BrWaC~\cite{brwac}, ShareGPT-Portuguese~\cite{sharegpt_portuguese}, Canarim~\cite{canarim}).\footnote{Desde a compilação deste corpus, novos recursos em português surgiram, incluindo GigaVerbo com 200B tokens~\cite{correa2024} e PTT5-v2~\cite{piau2024}, que podem beneficiar trabalhos futuros.}
 
@@ -41,7 +41,7 @@ A análise estilométrica baseia-se em três premissas fundamentais:
     \item \textbf{Mensurabilidade}: Características estilísticas podem ser quantificadas através de variáveis mensuráveis objetivamente.
 \end{enumerate}
 
-O trabalho seminal de \citeonline{mosteller1964} sobre os \textit{Federalist Papers} demonstrou que métodos estatísticos rigorosos podem atribuir autoria com alta confiança. A abordagem foi posteriormente formalizada por \citeonline{burrows2002} com a medida Delta, que utiliza distâncias estatísticas entre perfis estilométricos.
+O trabalho seminal de \textcite{mosteller1964} sobre os \textit{Federalist Papers} demonstrou que métodos estatísticos rigorosos podem atribuir autoria com alta confiança. A abordagem foi posteriormente formalizada por \textcite{burrows2002} com a medida Delta, que utiliza distâncias estatísticas entre perfis estilométricos.
 
 \subsubsection{Características Estilométricas}
 
@@ -58,16 +58,16 @@ As variáveis estilométricas utilizadas em análise de autoria podem ser catego
 \textbf{Variáveis em escala de intervalo} (diferenças interpretáveis, mas sem zero absoluto):
 \begin{itemize}
     \item Entropia de distribuição de caracteres \cite{shannon1948}
-    \item Coeficiente de variação do comprimento de frase \cite{madsen2005}
+    \item Coeficiente de variação do comprimento de frase (\textit{burstiness} normalizado) \cite{gptzero2023,chakraborty2023ct2}
 \end{itemize}
 
 A distinção entre escalas de medida é fundamental porque determina quais métodos estatísticos são aplicáveis. Variáveis em escala de razão permitem operações aritméticas completas e cálculo de medidas como média geométrica e coeficiente de variação. Variáveis em escala de intervalo permitem cálculo de médias e desvios padrão, mas não razões.
 
 \subsubsection{Detecção de Textos Gerados por LLMs}
 
-Estudos recentes demonstram que técnicas estilométricas clássicas permanecem eficazes para detectar textos gerados por modelos de linguagem de grande porte \cite{stylometric_llm_detection,stamatatos2009}. \citeonline{stylometric_llm_detection} reportaram acurácia superior a 99\% utilizando características estilométricas simples em amostras curtas (100-200 palavras).
+Estudos recentes demonstram que técnicas estilométricas clássicas permanecem eficazes para detectar textos gerados por modelos de linguagem de grande porte \cite{stylometric_llm_detection,stamatatos2009}. \textcite{stylometric_llm_detection} reportaram acurácia superior a 99\% utilizando características estilométricas simples em amostras curtas (100-200 palavras).
 
-Trabalhos específicos para o português incluem \citeonline{berriche2024}, que demonstraram a eficácia de medidas de entropia de caracteres e proporção de palavras funcionais. O presente trabalho estende essa linha de pesquisa aplicando métodos estatísticos multivariados a um conjunto abrangente de características estilométricas em português do Brasil.
+Trabalhos específicos para o português incluem \textcite{berriche2024}, que demonstraram a eficácia de medidas de entropia de caracteres e proporção de palavras funcionais. O presente trabalho estende essa linha de pesquisa aplicando métodos estatísticos multivariados a um conjunto abrangente de características estilométricas em português do Brasil.
 
 \subsection{Justificativa para Múltiplos Métodos Estatísticos}
 

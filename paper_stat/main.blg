@@ -1,67 +1,15 @@
-This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
-Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
-The top-level auxiliary file: main.aux
-The style file: abntex2-alf.bst
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
-Database file #1: abntex2-options.bib
-Database file #2: refs.bib
-Warning--I didn't find a database entry for "abnt-repeated-title-ignore=yes"
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
-Reallocated global_strs (elt_size=200001) to 20 items from 10.
-Reallocated glb_str_end (elt_size=4) to 20 items from 10.
-+---------------------------------------------------------+
-| Estilo bibliográfico abntex2-alf.bst versão v-1.9.7           |
-| Em caso de dúvidas ou problemas com este estilo procure |
-| http://www.abntex.net.br/                               |
-+---------------------------------------------------------+
-You've used 41 entries,
-            6714 wiz_defined-function locations,
-            1433 strings with 15529 characters,
-and the built_in function-call counts, 35601 in all, are:
-= -- 2999
-> -- 1111
-< -- 210
-+ -- 596
-- -- 337
-* -- 2473
-:= -- 4591
-add.period$ -- 137
-call.type$ -- 41
-change.case$ -- 399
-chr.to.int$ -- 99
-cite$ -- 38
-duplicate$ -- 2092
-empty$ -- 2524
-format.name$ -- 1602
-if$ -- 8308
-int.to.chr$ -- 2
-int.to.str$ -- 0
-missing$ -- 728
-newline$ -- 187
-num.names$ -- 190
-pop$ -- 929
-preamble$ -- 1
-purify$ -- 156
-quote$ -- 0
-skip$ -- 2296
-stack$ -- 1
-substring$ -- 1579
-swap$ -- 1003
-text.length$ -- 55
-text.prefix$ -- 0
-top$ -- 0
-type$ -- 7
-warning$ -- 0
-while$ -- 296
-width$ -- 0
-write$ -- 614
-(There was 1 warning)
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'main.blg'
+[48] biber:340> INFO - === Fri Dec 12, 2025, 16:47:57
+[61] Biber.pm:419> INFO - Reading 'main.bcf'
+[112] Biber.pm:979> INFO - Found 42 citekeys in bib section 0
+[120] Biber.pm:4419> INFO - Processing section 0
+[128] Biber.pm:4610> INFO - Looking for bibtex file 'refs.bib' for section 0
+[131] bibtex.pm:1713> INFO - LaTeX decoding ...
+[157] bibtex.pm:1519> INFO - Found BibTeX data source 'refs.bib'
+[343] UCollate.pm:68> INFO - Overriding locale 'pt-BR' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[343] UCollate.pm:68> INFO - Overriding locale 'pt-BR' defaults 'variable = shifted' with 'variable = non-ignorable'
+[343] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'pt-BR'
+[343] Biber.pm:4245> INFO - No sort tailoring available for locale 'pt-BR'
+[377] bbl.pm:660> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[391] bbl.pm:763> INFO - Output to main.bbl

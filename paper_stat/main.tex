@@ -4,22 +4,19 @@
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage{booktabs}
-\usepackage[alf,abnt-emphasize=bf,abnt-repeated-title-ignore=yes,abnt-thesis-year=final]{abntex2cite}
-\makeatletter
-\@ifpackageloaded{hyperref}{%
-  \usepackage[hyperfootnotes=false]{hyperref}%
-}{%
-  \usepackage[hyperfootnotes=false]{hyperref}%
-}
-\makeatother
+\usepackage[hyperfootnotes=false]{hyperref}
 \hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+\usepackage[backend=biber,style=abnt]{biblatex}
+\addbibresource{refs.bib}
 
-% Redefinir nome da seção de referências
-\renewcommand{\refname}{Referências}
+% Redefinir nome da seção de referências para português
+\DefineBibliographyStrings{brazilian}{%
+  bibliography = {Referências},
+}
 
 \title{Análise Estilométrica de Textos Humanos e de LLMs Usando Métodos Estatísticos}
 \author{Victor Löfgren Sattamini\\Programa de Pós-Graduação em Ciências Computacionais e Modelagem Matemática (PPG-CompMat)\\IME UERJ}
-\date{10 de Novembro de 2025}
+\date{11 de Dezembro de 2025}
 
 \begin{document}
 
@@ -67,6 +64,6 @@ A detecção de textos gerados por modelos de linguagem de grande porte (LLMs) t
 \section{Conclusão}
 \input{sections/conclusion.tex}
 
-\bibliography{refs}
+\printbibliography
 
 \end{document}

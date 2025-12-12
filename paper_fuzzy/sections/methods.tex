@@ -12,7 +12,7 @@ Utilizou-se um conjunto de dados textuais balanceado em português do Brasil con
 
 As fontes de texto autoral incluem: (i) \textbf{BrWaC} (Brazilian Web as Corpus), um grande conjunto web de textos brasileiros coletados da internet; e (ii) \textbf{BoolQ}, contendo passagens de contexto para perguntas booleanas.
 
-As fontes de texto gerado por LLM incluem: (i) \textbf{ShareGPT-Portuguese}, conversas em português geradas por modelos GPT; (ii) \textbf{IMDB Reviews}, resenhas traduzidas para português por modelos de tradução automática neural; e (iii) \textbf{Canarim}, dataset contendo saídas geradas por diversos LLMs em português.
+As fontes de texto gerado por LLM incluem: (i) \textbf{ShareGPT-Portuguese}, conversas em português geradas por modelos GPT; (ii) \textbf{IMDB Reviews}, resenhas traduzidas para português por modelos de tradução automática neural; e (iii) \textbf{Canarim}, conjunto de dados contendo saídas geradas por diversos LLMs em português.
 
 \subsubsection{Critérios de Inclusão e Pré-Processamento}
 
@@ -33,7 +33,7 @@ A estratificação por fonte é essencial porque diferentes origens apresentam v
 
 \subsection{Características Estilométricas}
 
-Utilizamos 10 características estilométricas extraídas pelo módulo \texttt{src/features.py}, selecionadas por capturarem aspectos complementares da estrutura estatística e lexical dos textos: (1) \texttt{sent\_mean} -- comprimento médio de frase (tendência central); (2) \texttt{sent\_std} -- desvio padrão do comprimento de frase (dispersão sintática); (3) \texttt{sent\_burst} -- coeficiente de variação ($\sigma/\mu$, dispersão relativa); (4) \texttt{ttr} -- relação tipo-token ($V/N$, diversidade lexical); (5) \texttt{herdan\_c} -- C de Herdan ($\log V / \log N$, diversidade normalizada); (6) \texttt{hapax\_prop} -- proporção de hapax legomena (raridade lexical); (7) \texttt{char\_entropy} -- variabilidade da distribuição de caracteres (dispersão medida pela fórmula de Shannon); (8) \texttt{func\_word\_ratio} -- proporção de palavras funcionais (estabilidade lexical, menor variância entre textos); (9) \texttt{first\_person\_ratio} -- proporção de pronomes de primeira pessoa (subjetividade); e (10) \texttt{bigram\_repeat\_ratio} -- proporção de bigramas únicos repetidos (redundância local).
+Utilizamos 10 características estilométricas extraídas pelo módulo \texttt{src/features.py}, selecionadas por capturarem aspectos complementares da estrutura estatística e lexical dos textos: (1) \texttt{sent\_mean} -- comprimento médio de frase (tendência central); (2) \texttt{sent\_std} -- desvio padrão do comprimento de frase (dispersão sintática); (3) \texttt{sent\_burst} -- coeficiente de variação ($\sigma/\mu$, dispersão relativa, também denominado \textit{burstiness} normalizado \cite{gptzero2023,siddharth2024burstiness}); (4) \texttt{ttr} -- relação tipo-token ($V/N$, diversidade lexical); (5) \texttt{herdan\_c} -- C de Herdan ($\log V / \log N$, diversidade normalizada); (6) \texttt{hapax\_prop} -- proporção de hapax legomena (raridade lexical); (7) \texttt{char\_entropy} -- variabilidade da distribuição de caracteres (dispersão medida pela fórmula de Shannon); (8) \texttt{func\_word\_ratio} -- proporção de palavras funcionais (estabilidade lexical, menor variância entre textos); (9) \texttt{first\_person\_ratio} -- proporção de pronomes de primeira pessoa (subjetividade); e (10) \texttt{bigram\_repeat\_ratio} -- proporção de tipos de bigramas que ocorrem mais de uma vez, capturando redundância local e padrões repetitivos \cite{solaiman2019release,li2016diversity}.
 
 Do ponto de vista estatístico, todas as características são \textbf{variáveis contínuas em escala de razão}, possuindo zero absoluto e razões interpretáveis entre valores.
 
@@ -131,7 +131,7 @@ Esta normalização garante que $P(\text{autoral}) + P(\text{LLM}) = 1$ e $P(c) 
 
 A complexidade de tempo para classificar um texto é $O(n \cdot m)$, onde $n = 10$ é o número de características e $m = 3$ é o número de conjuntos fuzzy por característica. Como $n$ e $m$ são constantes pequenas, a classificação é extremamente eficiente ($O(1)$ na prática), exigindo apenas 30 avaliações de funções de pertinência triangulares.
 
-Esta eficiência contrasta com métodos baseados em redes neurais ou gradient boosting, que requerem multiplicações matriciais ou avaliações de árvores profundas. A simplicidade do modelo fuzzy o torna adequado para aplicações em tempo real e dispositivos com recursos limitados.
+Esta eficiência contrasta com métodos baseados em redes neurais ou \textit{boosting} de gradiente, que requerem multiplicações matriciais ou avaliações de árvores profundas. A simplicidade do modelo fuzzy o torna adequado para aplicações em tempo real e dispositivos com recursos limitados.
 
 \subsection{Validação Cruzada Estratificada e Métricas de Avaliação}
 
@@ -155,7 +155,7 @@ As métricas reportadas são:
 
 \begin{itemize}
     \item \textbf{ROC AUC} (Area Under the Receiver Operating Characteristic Curve): mede a capacidade discriminativa do classificador, independente do limiar de decisão. Varia de 0 a 1, onde 0.5 indica desempenho aleatório e 1.0 indica discriminação perfeita~\cite{fawcett2006}.
-    \item \textbf{Precisão Média} (Average Precision): resumo da curva precisão-revocação, útil para datasets balanceados.
+    \item \textbf{Precisão Média} (Average Precision): resumo da curva precisão-revocação, útil para conjuntos de dados balanceados.
     \item \textbf{Desvio Padrão}: medida de dispersão dos resultados entre as 5 partições, indicando a estabilidade do modelo.
 \end{itemize}
 
@@ -176,7 +176,7 @@ A principal vantagem do classificador fuzzy é a \textbf{interpretabilidade comp
     \item \textbf{Validação especializada}: linguistas podem verificar se as regras fuzzy capturam intuições válidas sobre estilo
 \end{itemize}
 
-Esta transparência contrasta fortemente com modelos de caixa-preta (redes neurais profundas, gradient boosting), que não permitem inspeção direta do processo decisório.
+Esta transparência contrasta fortemente com modelos de caixa-preta (redes neurais profundas, \textit{boosting} de gradiente), que não permitem inspeção direta do processo decisório.
 
 \subsubsection{Robustez a Valores Extremos}
 
@@ -184,7 +184,7 @@ O uso de \textbf{quantis (estatísticas de ordem)} para determinar os parâmetro
 
 Esta propriedade resulta em \textbf{estabilidade excepcional}: enquanto métodos paramétricos (Regressão Logística, LDA) apresentam desvio padrão de AUC na ordem de $\pm 0.10\%$ a $\pm 0.15\%$, o classificador fuzzy atinge variância 3–4 vezes menor ($\pm 0.04\%$), conforme demonstrado nos resultados.
 
-\subsubsection{Custo de Oportunidade (Trade-off Interpretabilidade vs. Acurácia)}
+\subsubsection{Custo de Oportunidade (Compromisso Interpretabilidade vs. Acurácia)}
 
 A escolha da abordagem fuzzy implica um \textbf{custo de oportunidade}: o desempenho preditivo (AUC $\approx$ 89\%) é ligeiramente inferior ao de métodos estatísticos complexos (Regressão Logística com AUC $\approx$ 97\%). Esta diferença de aproximadamente 8 pontos percentuais representa o \textit{preço} pago pela obtenção de:
 
@@ -194,7 +194,7 @@ A escolha da abordagem fuzzy implica um \textbf{custo de oportunidade}: o desemp
     \item Eficiência computacional (complexidade $O(1)$)
 \end{enumerate}
 
-Este trade-off é análogo à escolha entre um modelo de regressão linear (interpretável, menos flexível) e uma rede neural profunda (alta capacidade, caixa-preta). Em contextos onde a \textbf{explicabilidade} é crítica -- como detecção de plágio acadêmico, auditoria de integridade científica, ou sistemas de suporte à decisão educacional -- o custo de 8 pontos percentuais é justificável e aceitável.
+Este compromisso é análogo à escolha entre um modelo de regressão linear (interpretável, menos flexível) e uma rede neural profunda (alta capacidade, caixa-preta). Em contextos onde a \textbf{explicabilidade} é crítica -- como detecção de plágio acadêmico, auditoria de integridade científica, ou sistemas de suporte à decisão educacional -- o custo de 8 pontos percentuais é justificável e aceitável.
 
 \subsubsection{Incorporação de Conhecimento Especializado}
 

@@ -36,7 +36,7 @@ Esta robustez superior é atribuída à determinação de parâmetros por \textb
 
 A diferença de 7,9 pontos percentuais entre o classificador fuzzy (89,34\%) e a regressão logística (97,03\%) é \textbf{estatisticamente significativa}, conforme esperado dado o baixo desvio padrão de ambos os métodos. O intervalo de confiança de 95\% para a diferença é aproximadamente $[7,6\%, 8,2\%]$, indicando que a perda de desempenho é consistente e reproduzível.
 
-Entretanto, esta diferença deve ser interpretada no contexto do \textbf{custo de oportunidade}: o classificador fuzzy sacrifica ~8\% de AUC em troca de interpretabilidade completa, robustez superior e eficiência computacional -- um trade-off justificável em aplicações onde explicabilidade é prioritária.
+Entretanto, esta diferença deve ser interpretada no contexto do \textbf{custo de oportunidade}: o classificador fuzzy sacrifica ~8\% de AUC em troca de interpretabilidade completa, robustez superior e eficiência computacional -- um compromisso justificável em aplicações onde explicabilidade é prioritária.
 
 A Figura~\ref{fig:fuzzy_roc_comparison} apresenta a curva ROC do classificador fuzzy proposto. Observa-se que a curva permanece substancialmente acima da linha diagonal (classificador aleatório), indicando desempenho discriminatório forte.
 
@@ -97,6 +97,6 @@ Para aplicações onde \textit{explicabilidade} é crítica -- como educação (
 
 \subsection{Comparação com Estudos Anteriores}
 
-Os resultados do classificador fuzzy (89,34\% AUC) são competitivos com estudos anteriores em detecção de LLMs. Por exemplo, um estudo recente usando Random Forest reportou acurácias de 81\% e 98\% em dois conjuntos de dados distintos~\cite{stylometric_llm_detection}, embora com 31 características (vs 10 neste trabalho). Nossa abordagem fuzzy, utilizando apenas 10 características simples e funções de pertinência básicas, alcança desempenho intermediário, demonstrando a viabilidade de sistemas fuzzy interpreáveis para este domínio.
+Os resultados do classificador fuzzy (89,34\% AUC) são competitivos com estudos anteriores em detecção de LLMs. Por exemplo, um estudo recente usando floresta aleatória reportou acurácias de 81\% e 98\% em dois conjuntos de dados distintos~\cite{stylometric_llm_detection}, embora com 31 características (vs 10 neste trabalho). Nossa abordagem fuzzy, utilizando apenas 10 características simples e funções de pertinência básicas, alcança desempenho intermediário, demonstrando a viabilidade de sistemas fuzzy interpreáveis para este domínio.
 
 Além disso, este é, ao nosso conhecimento, o \textbf{primeiro trabalho a aplicar lógica fuzzy para detecção de LLMs em português brasileiro}, contribuindo para a literatura tanto em termos metodológicos quanto linguísticos.

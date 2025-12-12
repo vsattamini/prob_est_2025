@@ -20,7 +20,7 @@ A análise de componentes principais revela que PC1 (38\% de variância) represe
 
 \subsection{Comparação com Estudos Anteriores}
 
-Comparando com a literatura em língua inglesa, nossos resultados são notavelmente fortes. Um estudo recente reportou acurácias de 81--98\% usando Random Forest com 31 características~\cite{stylometric_llm_detection}. Nosso trabalho alcança 97\% AUC com apenas 10 características e um modelo linear simples, sugerindo que: (i) as características estilométricas escolhidas são altamente informativas; (ii) métodos lineares podem ser tão eficazes quanto métodos ensemble para este problema; e (iii) as diferenças estilométricas em português podem ser ainda mais pronunciadas que em inglês, embora esta hipótese requeira validação com datasets paralelos.
+Comparando com a literatura em língua inglesa, nossos resultados são notavelmente fortes. Um estudo recente reportou acurácias de 81--98\% usando floresta aleatória com 31 características~\cite{stylometric_llm_detection}. Nosso trabalho alcança 97\% AUC com apenas 10 características e um modelo linear simples, sugerindo que: (i) as características estilométricas escolhidas são altamente informativas; (ii) métodos lineares podem ser tão eficazes quanto métodos ensemble para este problema; e (iii) as diferenças estilométricas em português podem ser ainda mais pronunciadas que em inglês, embora esta hipótese requeira validação com conjuntos de dados paralelos.
 
 É importante notar que a maioria dos estudos anteriores focou em inglês, deixando uma lacuna na literatura para outras línguas. Este trabalho contribui ao demonstrar que as diferenças estilométricas se generalizam para o português brasileiro, validando a universalidade (ao menos parcial) dos padrões observados e abrindo caminho para estudos multilíngues.
 
@@ -29,7 +29,7 @@ Comparando com a literatura em língua inglesa, nossos resultados são notavelme
 Várias limitações devem ser reconhecidas:
 
 \begin{enumerate}
-    \item \textbf{Desbalanceamento das fontes de dados:} o corpus original era altamente desbalanceado (98\% humano, 2\% LLM), exigindo técnicas de balanceamento que podem introduzir viés. Idealmente, datasets futuros deveriam coletar amostras naturalmente balanceadas.
+    \item \textbf{Desbalanceamento das fontes de dados:} o corpus original era altamente desbalanceado (98\% humano, 2\% LLM), exigindo técnicas de balanceamento que podem introduzir viés. Idealmente, conjuntos de dados futuros deveriam coletar amostras naturalmente balanceadas.
 
     \item \textbf{Diversidade de LLMs:} os textos de LLM provêm primariamente de modelos estilo ChatGPT (GPT-3.5/4). Modelos futuros ou arquiteturas distintas (e.g., Claude, Gemini, modelos especializados em português) podem apresentar padrões estilométricos diferentes, potencialmente reduzindo a acurácia dos classificadores.
 
